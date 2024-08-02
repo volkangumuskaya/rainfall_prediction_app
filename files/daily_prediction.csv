@@ -1,5 +1,0 @@
-station,date,rain_amount_in_tenth_mm,snow_code,rain_amount_mm,year,month,previous_day_rain_mm,season,chance_of_rain_prediction,rain_occurrence_prediction,rain_amount_mm_prediction,pred_run_on
-919,20240628,0,0,0.0,2024,6,0.0,Summer,0.3183961828036576,0,2.454364045522436,2024-07-29 20:13:17.087691
-919,20240629,0,0,0.0,2024,6,0.0,Summer,0.3183961828036576,0,2.454364045522436,2024-07-29 20:13:17.087691
-919,20240630,63,0,6.3,2024,6,0.0,Summer,0.3183961828036576,0,2.454364045522436,2024-07-30 20:09:02.901846
-
