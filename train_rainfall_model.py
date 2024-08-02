@@ -23,35 +23,62 @@ import datetime
 
 
 
-print('Reading daily_rain_data.csv')
-filename='files/daily_rain_data.csv'
+print('Reading historical_rain_data.csv.csv')
+filename='files/historical_rain_data.csv.csv'
 df=pd.read_csv(filename)
 
 print('Data preparation in process...')
+#data preparation
+selected_cols=['STN', 'YYYYMMDD', 'DDVEC', 'FG', 'TG', 'TN', 'TX',
+          'DR', 'RH', 'RHX', 'RHXH',
+          'PG', 'PX', 'PN','UX', 'UN']
+
+col_names_dict = {
+    "STN": "station",
+    "YYYYMMDD": "date",
+    "DDVEC": "wind_direction",
+    'FG':"mean_wind_speed",
+    "TG":'mean_temp',
+    "TN":'min_temp',
+    "TX":'max_temp',
+    'DR':'rain_duration',
+    'RH':'rain_amount_mm',
+    'RHX':'max_hourly_rain_mm',
+    'RHXH':'time_of_max_rain',
+    'PG':'mean_pressure',
+    'PX':'max_pressure',
+    'PN':'min_pressure',
+    'UX':'max_humidity',
+    'UN':'min_humidity'
+}
+
+#filter out not selected columns
+df=df[[x for x in df.columns if x in col_names_dict]]
+
+#Convert data to the expected format by LGBM model
 df.columns = df.columns.str.strip()
-df=df.rename(columns={'STN': "station", 'YYYYMMDD': "date",'RD':'rain_amount_in_tenth_mm','SX':'snow_code'})
-df['rain_amount_mm']=df['rain_amount_in_tenth_mm']/10
+df=df.rename(columns=col_names_dict)
+
+df['rain_amount_mm']=df['rain_amount_mm']/10
+df.loc[df.rain_amount_mm <=0, 'rain_amount_mm'] = 0
+
+df['max_hourly_rain_mm']=df['max_hourly_rain_mm']/10
+df.loc[df.max_hourly_rain_mm <=0, 'max_hourly_rain_mm'] = 0
+
+df['mean_temp']=df['mean_temp']/10
+df['min_temp']=df['min_temp']/10
+df['max_temp']=df['max_temp']/10
+df['mean_pressure']=df['mean_pressure']/10
+df['min_pressure']=df['min_pressure']/10
+df['max_pressure']=df['max_pressure']/10
+df['rain_duration']=df['rain_duration']/10
+
+
 df['year']=np.floor((df['date']/10000)).astype('int')
 df['month']=(np.floor(df['date']/100)-np.floor((df['date']/10000))*100).astype('int')
-df['day']=(df['date']-(np.floor(df['date']/100)*100)).astype('int')
-df['daymonthyear']=df['date']
-df['yearmonth']=df['year']*100+df['month']
-df['date']=df['date'].astype('string')
 
 #previous day rain in mm
-df['previous_day_rain_mm']=df['rain_amount_mm'].shift(periods=1).fillna(0)
-
-#some desc stats
-df.describe()
-
-#aggragate rains
-df.groupby('month')['rain_amount_mm'].sum()
-df.groupby('month')['rain_amount_mm'].mean()
-df.groupby('year')['rain_amount_mm'].sum()
-df.groupby(['year','month'])['rain_amount_mm'].sum()
-df.groupby('yearmonth')['rain_amount_mm'].sum()
-
-df['monthly_rain_mm']=df.groupby(['year','month'])[['rain_amount_mm']].transform('sum')
+df['next_day_rain_mm']=df['rain_amount_mm'].shift(periods=-1).fillna(0)
 
 #seasons
 #map one column to another
@@ -61,15 +88,30 @@ conditions = [(df['month'].isin ([12,1,2])),
             (df['month'].isin ([9,10,11]))
               ]
 choices = ['Winter', 'Spring', 'Summer','Fall']
-
 df['season'] = np.select(conditions, choices,default='na')
-
-#month names
-#map one column to another
-
 df['month_name'] =df['month'].apply(lambda x: calendar.month_name[x])
 
+# Define features and target
+df.columns
+features = ['wind_direction','month_name','season',
+            'mean_wind_speed',
+            'mean_temp','min_temp','max_temp',
+            'mean_pressure','max_pressure', 'min_pressure',
+            'max_humidity', 'min_humidity',
+            'rain_duration', 'rain_amount_mm','max_hourly_rain_mm', 'time_of_max_rain'
+            ]
+target = 'next_day_rain_mm'
+
+df[features].dtypes
+for col in df.columns:
+    col_type = df[col].dtype
+    if col_type == 'object' or col_type.name == 'string':
+        df[col] = df[col].astype('category')
+print(df.dtypes)
+
+######
 print('Creating train and test set..')
+
 #####form train-test set
 lgbm_params = {
     'n_estimators': 10,  # 100, opt 1000
@@ -81,19 +123,6 @@ lgbm_params = {
 }
 
 # Define features and target
-df.columns
-features = ['year', 'month', 'previous_day_rain_mm', 'season']
-target = "rain_amount_mm"
-
-
-# Change string and object type columns to category for LGBM
-df[features].dtypes
-for col in df.columns:
-    col_type = df[col].dtype
-    if col_type == 'object' or col_type.name == 'string':
-        df[col] = df[col].astype('category')
-print(df.dtypes)
-
 
 # Create X and y
 df.index=np.arange(len(df))
@@ -125,8 +154,8 @@ Y_test_clf.shape
 print('Training classification and regression models..')
 # Fit model using predetermined parameters
 # lgbr = lgb.LGBMRegressor(**lgbm_params)  # lgbr.get_params()
-lgbr = lgb.LGBMRegressor()  # lgbr.get_params()
-lgbr.fit(X_train, Y_train, eval_set=(X_test, Y_test), feature_name='auto', categorical_feature='auto')
+lgb_reg = lgb.LGBMRegressor()  # lgbr.get_params()
+lgb_reg.fit(X_train, Y_train, eval_set=(X_test, Y_test), feature_name='auto', categorical_feature='auto')
 
 lgbr_clf = lgb.LGBMClassifier()  # lgbr.get_params()
 lgbr_clf.fit(X_train, Y_train_clf, eval_set=(X_test, Y_test_clf), feature_name='auto', categorical_feature='auto')
@@ -145,8 +174,9 @@ lgbr_clf.best_score_
 
 print('Making predcitions..')
 # make predictions
-pred_test = lgbr.predict(X_test)
-pred_train = lgbr.predict(X_train)
+pred_test = lgb_reg.predict(X_test)
+pred_test=np.where(pred_test<=0,0,pred_test)
+pred_train = lgb_reg.predict(X_train)
 
 pred_test_clf = lgbr_clf.predict(X_test)
 pred_train_clf = lgbr_clf.predict(X_train)
