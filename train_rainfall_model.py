@@ -223,7 +223,7 @@ df_all.to_csv(path,index=False)
 model_id=str(datetime.datetime.now().strftime('%Y/%m/%d %H:%M:%S'))
 print('Model id is:',model_id)
 
-rainfall_models=[lgbr,lgbr_clf,model_id]
+rainfall_models=[lgb_reg,lgbr_clf,model_id]
 path='files/rainfall_models.pickle'
 print("Dumping models as artefacts to:", path)
 with open(path, 'wb') as handle:
