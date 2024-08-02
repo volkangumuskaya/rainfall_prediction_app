@@ -1,4 +1,3 @@
-
 import pandas as pd
 import re
 import io
@@ -7,37 +6,32 @@ import requests
 from requests.exceptions import HTTPError
 import numpy as np
 import datetime
+import calendar
 
 #set end date to 1 month ago
-end_date=int((datetime.date.today()-datetime.timedelta(days=30)).strftime('%Y%m%d'))
-start_date=int((datetime.date.today()-datetime.timedelta(days=31)).strftime('%Y%m%d'))
-
-#go back one month because for some reason knmi website does not provide the current month data
-#since this is just to try github action capabilities, and not make real time predcitions that will be used, it s ok
-#better than causing data leakage
-#it will simulate how system would work one month ago
+end_date=int((datetime.date.today()-datetime.timedelta(days=1)).strftime('%Y%m%d'))
+start_date=int((datetime.date.today()-datetime.timedelta(days=2)).strftime('%Y%m%d'))
 
 data = {
     'start': start_date,
     'end': end_date,
     'vars': 'ALL',
-    'stns': '919',
+    'stns': '370',
 }
 
-URLS = ["https://daggegevens.knmi.nl/klimatologie/monv/reeksen"]
+URL = "https://daggegevens.knmi.nl/klimatologie/daggegevens"
 
-for url in URLS:
-    try:
-        response = requests.post('https://www.daggegevens.knmi.nl/klimatologie/monv/reeksen', data=data)
-        response.raise_for_status()
-    except HTTPError as http_err:
-        print(f"HTTP error occurred : {http_err}")
-    except Exception as err:
-        print(f"Other error occurred: {err}")
-    else:
-        print("Success with status code",response.status_code)
+try:
+    response = requests.post(URL, data=data)
+    response.raise_for_status()
+except HTTPError as http_err:
+    print(f"HTTP error occurred : {http_err}")
+except Exception as err:
+    print(f"Other error occurred: {err}")
+else:
+    print("Success with status code",response.status_code)
 
-print("preparing downloaded data")
+
 ##Parse response as df
 
 s=str(response.content)# response as string
@@ -48,16 +42,57 @@ s=s.replace("'",'') #delete '
 df=pd.read_csv(io.StringIO(s), sep=",")
 type(df)
 
+#data preparation
+selected_cols=['STN', 'YYYYMMDD', 'DDVEC', 'FG', 'TG', 'TN', 'TX',
+          'DR', 'RH', 'RHX', 'RHXH',
+          'PG', 'PX', 'PN','UX', 'UN']
+
+col_names_dict = {
+    "STN": "station",
+    "YYYYMMDD": "date",
+    "DDVEC": "wind_direction",
+    'FG':"mean_wind_speed",
+    "TG":'mean_temp',
+    "TN":'min_temp',
+    "TX":'max_temp',
+    'DR':'rain_duration',
+    'RH':'rain_amount_mm',
+    'RHX':'max_hourly_rain_mm',
+    'RHXH':'time_of_max_rain',
+    'PG':'mean_pressure',
+    'PX':'max_pressure',
+    'PN':'min_pressure',
+    'UX':'max_humidity',
+    'UN':'min_humidity'
+}
+
+#filter out not selected columns
+df=df[[x for x in df.columns if x in col_names_dict]]
 
 #Convert data to the expected format by LGBM model
 df.columns = df.columns.str.strip()
-df=df.rename(columns={'STN': "station", 'YYYYMMDD': "date",'RD':'rain_amount_in_tenth_mm','SX':'snow_code'})
-df['rain_amount_mm']=df['rain_amount_in_tenth_mm']/10
+df=df.rename(columns=col_names_dict)
+
+df['rain_amount_mm']=df['rain_amount_mm']/10
+df.loc[df.rain_amount_mm <=0, 'rain_amount_mm'] = 0
+
+df['max_hourly_rain_mm']=df['max_hourly_rain_mm']/10
+df.loc[df.max_hourly_rain_mm <=0, 'max_hourly_rain_mm'] = 0
+
+df['mean_temp']=df['mean_temp']/10
+df['min_temp']=df['min_temp']/10
+df['max_temp']=df['max_temp']/10
+df['mean_pressure']=df['mean_pressure']/10
+df['min_pressure']=df['min_pressure']/10
+df['max_pressure']=df['max_pressure']/10
+df['rain_duration']=df['rain_duration']/10
+
+
 df['year']=np.floor((df['date']/10000)).astype('int')
 df['month']=(np.floor(df['date']/100)-np.floor((df['date']/10000))*100).astype('int')
 
 #previous day rain in mm
-df['previous_day_rain_mm']=df['rain_amount_mm'].shift(periods=1).fillna(0)
+df['next_day_rain_mm']=df['rain_amount_mm'].shift(periods=-1).fillna(0)
 
 #seasons
 #map one column to another
@@ -67,21 +102,27 @@ conditions = [(df['month'].isin ([12,1,2])),
             (df['month'].isin ([9,10,11]))
               ]
 choices = ['Winter', 'Spring', 'Summer','Fall']
-
 df['season'] = np.select(conditions, choices,default='na')
+df['month_name'] =df['month'].apply(lambda x: calendar.month_name[x])
 
 # Define features and target
 df.columns
-features = ['year', 'month', 'previous_day_rain_mm', 'season']
-target = "rain_amount_mm"
+features = ['wind_direction','month_name','season',
+            'mean_wind_speed',
+            'mean_temp','min_temp','max_temp',
+            'mean_pressure','max_pressure', 'min_pressure',
+            'max_humidity', 'min_humidity',
+            'rain_duration', 'rain_amount_mm','max_hourly_rain_mm', 'time_of_max_rain'
+            ]
+target = 'next_day_rain_mm'
 
-# Change string and object type columns to category for LGBM
 df[features].dtypes
 for col in df.columns:
     col_type = df[col].dtype
     if col_type == 'object' or col_type.name == 'string':
         df[col] = df[col].astype('category')
 print(df.dtypes)
+
 
 print("loading rainfall models")
 import pickle
@@ -105,6 +146,5 @@ df=pd.concat([df,df_test],axis=1)
 path='files/daily_prediction.csv'
 print('saving to path:',path)
 df['pred_run_on']=str(datetime.datetime.now())
-df['used_model']=model_id
-df.tail(1).to_csv(path,mode='a',header=False,index=False)
+df['used_model']=model_idf.head(1).to_csv(path,mode='w',header=True,index=False)
 
