@@ -1,6 +1,8 @@
 name: Get historical_data from knmi
 run-name: ${{ github.actor }} is testing getting historical rain data from knmi
-on: workflow_dispatch
+on: 
+  schedule:
+    - cron: '00 12 * * 1'
 env:
   TRAIN_START_DATE: "20140101"
   TRAIN_END_DATE: "20240501"
