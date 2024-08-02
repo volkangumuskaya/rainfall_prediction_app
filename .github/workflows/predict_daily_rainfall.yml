@@ -1,6 +1,8 @@
 name: Predict daily rainfall
 run-name: ${{ github.actor }} is testing daily prediction model
-on: workflow_dispatch
+on: 
+  schedule:
+    - cron: '00 14 * * *'
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
