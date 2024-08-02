@@ -146,5 +146,6 @@ df=pd.concat([df,df_test],axis=1)
 path='files/daily_prediction.csv'
 print('saving to path:',path)
 df['pred_run_on']=str(datetime.datetime.now())
-df['used_model']=df.head(1).to_csv(path,mode='a',header=False,index=False)
+df['used_model']=model_id
+df.head(1).to_csv(path,mode='w',header=True,index=False)
 
