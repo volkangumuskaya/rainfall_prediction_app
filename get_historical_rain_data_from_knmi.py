@@ -9,21 +9,21 @@ data = {
     'start': os.environ['TRAIN_START_DATE'],
     'end': os.environ['TRAIN_END_DATE'],
     'vars': 'ALL',
-    'stns': '919',
+    'stns': '370',
 }
 
-URLS = ["https://daggegevens.knmi.nl/klimatologie/monv/reeksen"]
+URL = "https://daggegevens.knmi.nl/klimatologie/daggegevens"
 
-for url in URLS:
-    try:
-        response = requests.post('https://www.daggegevens.knmi.nl/klimatologie/monv/reeksen', data=data)
-        response.raise_for_status()
-    except HTTPError as http_err:
-        print(f"HTTP error occurred : {http_err}")
-    except Exception as err:
-        print(f"Other error occurred: {err}")
-    else:
-        print("Success with status code",response.status_code)
+try:
+    response = requests.post(URL, data=data)
+    response.raise_for_status()
+except HTTPError as http_err:
+    print(f"HTTP error occurred : {http_err}")
+except Exception as err:
+    print(f"Other error occurred: {err}")
+else:
+    print("Success with status code",response.status_code)
+
 
 ##Parse response as df
 
