@@ -31,7 +31,12 @@ Using classification models, we also provide the probability of rainfall.
 Here, obviously we are not trying to have a full blown weather model. The whole purpose is to have **A** decent model, and make reasonable predictions on schedule. 
 
 - **Input**: Historical rainfall (`historical_rain_data.csv`)
-- **Output**: LGBM models - classification and regression (`rainfall_models.pickle`). `train_test_set_comprehensive.csv` includes detailed data on training and testing set, errors, etc for tracking purposes if/when things go south.
+- **Output**:
+  - LGBM models - classification and regression (`rainfall_models.pickle`).
+  - `train_test_set_comprehensive.csv` includes detailed data on training and testing set, errors, etc for tracking purposes if/when things go south.
+  - `images` folder includes the confusion matrices. For example:
+    
+<img src="images/confusion_matrix_train.png" width="425"/> <img src="images/confusion_matrix_test.png" width="425"/> 
 
 ### 3.  Get daily data and make predictions for tomorrow (`predict_daily_rainfall.yml`, scheduled every day at 20:00 UTC)
 
