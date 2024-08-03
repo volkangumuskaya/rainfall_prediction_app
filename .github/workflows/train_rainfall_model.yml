@@ -22,7 +22,9 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
           git add files/train_test_set_comprehensive.csv  
-          git add files/rainfall_models.pickle 
+          git add files/rainfall_models.pickle
+          git add images/confusion_matrix_train.png
+          git add images/confusion_matrix_test.png
           git commit -m 'Add generated CSV file'
           git push
       env:
