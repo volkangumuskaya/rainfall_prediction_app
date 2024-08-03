@@ -6,7 +6,7 @@ Some `yml` and `python` scripts to learn/practice ML Ops. Nothing fancy, just to
 ## Workflow actions (YML files in `.github/workflows`)
 As the name suggests these files impose scheduled/manually triggered actions. The actions invoke  python scripts on schedule or by manual trigger - for now:
 
-### 1. Retrieve historical data from KNMI (`get_historical_rain_data.yml`, scheduled on Sundays at 13:00): 
+### 1. Retrieve historical data from KNMI (`get_historical_rain_data.yml`, scheduled on Sundays at 12:00 UTC): 
 **`set_dates_for_training.py`**
 
 In order to get the historical dataset and make the `POST` request to KNMI website, we set the starting and end dates. Starting date is 10 years ago and end date is 1 month ago from today. This is manual for now but can and will be scheduled (like daily predcition) to be invoked in every month. 
@@ -21,7 +21,7 @@ After getting the data, there is some data preparation going on to have a ready 
 - **Output**: Historical rainfall amounts (`historical_rain_data.csv`)
  
 
-### 2. Train the prediction models (`train_rainfall_model.yml`, scheduled on Sundays at 14:00)
+### 2. Train the prediction models (`train_rainfall_model.yml`, scheduled on Sundays at 13:00 UTC)
 **`train_rainfall_model.py`**
 
 Here, we train two `LGBM` models, one regression and one classification. Regression model predicts the rainfall amount in mm. Classification predcits whether or now it will rain, i.e. rainfall>=0.1 mm. The two models are exclusive. 
@@ -38,7 +38,7 @@ Here, obviously we are not trying to have a full blown weather model. The whole 
     
 <img src="images/confusion_matrix_train.png" width="425"/> <img src="images/confusion_matrix_test.png" width="425"/> 
 
-### 3.  Get daily data and make predictions for tomorrow (`predict_daily_rainfall.yml`, scheduled every day at 15:00 UTC)
+### 3.  Get daily data and make predictions for tomorrow (`predict_daily_rainfall.yml`, scheduled every day at 14:00 UTC)
 
 **`predict_daily_rainfall.py`**
 
