@@ -18,7 +18,7 @@ Here, we make a `POST` request to KNMI's website (Dutch Meteoology website) usin
 After getting the data, there is some data preparation going on to have a ready dataset for training the LGBM models ( feel free to call it *data munging, wrangling* etc for increased marketability).   
 
 - **Input**: The `env` variables `starting date` and `ending date`
-- **Output**: Historical rainfall amounts (`historical_rain_data.csv`)
+- **Output**: Historical rainfall amounts (`files/historical_rain_data.csv`)
  
 
 ### 2. Train the prediction models (`train_rainfall_model.yml`, scheduled on Sundays at 13:00 UTC)
@@ -30,10 +30,10 @@ Using classification models, we also provide the probability of rainfall.
 
 Here, obviously we are not trying to have a full blown weather model. The whole purpose is to have **A** decent model, and make reasonable predictions on schedule. 
 
-- **Input**: Historical rainfall (`historical_rain_data.csv`)
+- **Input**: Historical rainfall (`files/historical_rain_data.csv`)
 - **Output**:
-  - LGBM models - classification and regression (`rainfall_models.pickle`).
-  - `train_test_set_comprehensive.csv` includes detailed data on training and testing set, errors, etc for tracking purposes if/when things go south.
+  - LGBM models - classification and regression (`files/rainfall_models.pickle`).
+  - `files/train_test_set_comprehensive.csv` includes detailed data on training and testing set, errors, etc for tracking purposes if/when things go south.
   - `images` folder includes the confusion matrices. For example:
     
 <img src="images/confusion_matrix_train.png" width="425"/> <img src="images/confusion_matrix_test.png" width="425"/> 
@@ -44,5 +44,5 @@ Here, obviously we are not trying to have a full blown weather model. The whole 
 
 Using the saved models as `pickle` files, we get daily data similar to `get_daily_rain_data_from_knmi.py` and make predictions. Call it the inference part if you like.
 
-- **Input**: LGBM models - classification and regression (`rainfall_models.pickle`)
-- **Output**: Daily predictions file (`daily_prediction.csv`). Each row will be a prediction made at each day. For that reason, the file is written in `append` mode.
+- **Input**: LGBM models - classification and regression (`files/rainfall_models.pickle`)
+- **Output**: Daily predictions file (`files/daily_prediction.csv`). Each row will be a prediction made at each day. For that reason, the file is written in `append` mode.
