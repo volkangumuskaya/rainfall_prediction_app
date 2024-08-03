@@ -249,10 +249,12 @@ actuals=df_all[df_all.sample_type=='test']['rain_occurrence'].copy()
 
 
 cf_matrix = confusion_matrix(actuals, preds)
-tmp = pd.DataFrame(cf_matrix).transpose()
+tmp = pd.DataFrame(cf_matrix)
 
-loc_labels=np.unique(actuals.to_list())
-fig=sns.heatmap(cf_matrix, cmap='Reds', xticklabels=loc_labels, yticklabels=loc_labels, **kwargs, fmt='g')
+x_labs=tmp.columns.to_list()
+y_labs=tmp.index.to_list()
+
+fig=sns.heatmap(tmp, cmap='Reds', xticklabels=x_labs, yticklabels=y_labs, **kwargs, fmt='g')
 fig.set_ylabel('Actual')
 fig.set_xlabel('Predicted')
 fig.title.set_text('Confusion matrix TEST set\n model')
@@ -268,10 +270,12 @@ actuals=df_all[df_all.sample_type=='train']['rain_occurrence'].copy()
 
 
 cf_matrix = confusion_matrix(actuals, preds)
-tmp = pd.DataFrame(cf_matrix).transpose()
+tmp = pd.DataFrame(cf_matrix)
 
-loc_labels=np.unique(actuals.to_list())
-fig=sns.heatmap(cf_matrix, cmap='Blues', xticklabels=loc_labels, yticklabels=loc_labels, **kwargs, fmt='g')
+x_labs=tmp.columns.to_list()
+y_labs=tmp.index.to_list()
+
+fig=sns.heatmap(tmp, cmap='Reds', xticklabels=x_labs, yticklabels=y_labs, **kwargs, fmt='g')
 fig.set_ylabel('Actual')
 fig.set_xlabel('Predicted')
 fig.title.set_text('Confusion matrix TRAIN set\n model')
