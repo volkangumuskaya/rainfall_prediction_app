@@ -15,6 +15,9 @@ import random
 import pickle
 import datetime
 
+import seaborn as sns
+import matplotlib.pyplot as plt
+
 
 # THESE DATA CAN BE USED FREELY PROVIDED THAT THE FOLLOWING SOURCE IS ACKNOWLEDGED:
 # ROYAL NETHERLANDS METEOROLOGICAL INSTITUTE
@@ -228,3 +231,55 @@ path='files/rainfall_models.pickle'
 print("Dumping models as artefacts to:", path)
 with open(path, 'wb') as handle:
     pickle.dump(rainfall_models, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+#CREATE PLOTS
+
+#plot heatmap
+kwargs = {
+    'cbar': False,
+    'linewidths': 0.2,
+    'linecolor': 'white',
+    'annot': True}
+df.columns
+
+
+#CONFUSION MATRIX TEST
+preds=df_all[df_all.sample_type=='test']['pred_rain_occurrence'].copy()
+actuals=df_all[df_all.sample_type=='test']['rain_occurrence'].copy()
+
+
+cf_matrix = confusion_matrix(actuals, preds)
+tmp = pd.DataFrame(cf_matrix).transpose()
+
+loc_labels=np.unique(actuals.to_list())
+fig=sns.heatmap(cf_matrix, cmap='Reds', xticklabels=loc_labels, yticklabels=loc_labels, **kwargs, fmt='g')
+fig.set_ylabel('Actual')
+fig.set_xlabel('Predicted')
+fig.title.set_text('Confusion matrix TEST set\n model')
+print("fig created")
+path='images/confusion_matrix_test.png'
+plt.savefig(path)
+print("fig saved to: ", path)
+plt.close('all')
+
+#CONFUSION MATRIX TRAIN
+preds=df_all[df_all.sample_type=='train']['pred_rain_occurrence'].copy()
+actuals=df_all[df_all.sample_type=='train']['rain_occurrence'].copy()
+
+
+cf_matrix = confusion_matrix(actuals, preds)
+tmp = pd.DataFrame(cf_matrix).transpose()
+
+loc_labels=np.unique(actuals.to_list())
+fig=sns.heatmap(cf_matrix, cmap='Blues', xticklabels=loc_labels, yticklabels=loc_labels, **kwargs, fmt='g')
+fig.set_ylabel('Actual')
+fig.set_xlabel('Predicted')
+fig.title.set_text('Confusion matrix TRAIN set\n model')
+print("fig created")
+path='images/confusion_matrix_train.png'
+plt.savefig(path)
+print("fig saved to: ", path)
+plt.close('all')
+
+
+
