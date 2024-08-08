@@ -6,3 +6,4 @@ lightgbm
 numpy
 kaleido
 seaborn
+plotly
