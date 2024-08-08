@@ -1,4 +1,3 @@
-#!/bin/python3
 import pandas as pd
 from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
 import seaborn as sns
@@ -6,7 +5,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #plot heatmap
-df=pd.read_csv('daily_prediction.csv')
+print('Reading daily_prediction.csv')
+filename='files/daily_prediction.csv'
 
 y_max=np.ceil(max(df.rain_amount_mm_prediction.max(),df.next_day_rain_mm.max())/20)*20
 y_min=-y_max
