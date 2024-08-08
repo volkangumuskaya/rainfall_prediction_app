@@ -1,6 +1,8 @@
 name: Make plots for daily predictions
 run-name: ${{ github.actor }} is testing make plots for predictions
-on: workflow_dispatch
+on: 
+  schedule:
+    - cron: '00 15 * * *'
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
