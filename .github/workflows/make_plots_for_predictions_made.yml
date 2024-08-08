@@ -1,4 +1,4 @@
-name: Predict daily rainfall
+name: Make plots for daily predictions
 run-name: ${{ github.actor }} is testing make plots for predictions
 on: workflow_dispatch
 jobs:
