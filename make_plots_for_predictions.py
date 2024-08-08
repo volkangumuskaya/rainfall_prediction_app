@@ -59,7 +59,10 @@ fig.update_yaxes(range=[y_min,y_max], secondary_y=False)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=True)
 print("Preds-actuals-errors fig created")
 path='images/preds_actuals_errors.png'
-plt.savefig(path)
+# plt.savefig(path)
+import plotly.io as pio
+pio.write_image(fig, path,width=1600, height=900)
+
 print("fig saved to: ", path)
 plt.close('all')
 
