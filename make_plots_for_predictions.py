@@ -78,7 +78,7 @@ tmp = pd.DataFrame(cf_matrix)
 x_labs=tmp.columns.to_list()
 y_labs=tmp.index.to_list()
 
-fig=sns.heatmap(tmp, cmap='Greens', xticklabels=x_labs, yticklabels=y_labs, **kwargs, fmt='g')
+fig=sns.heatmap(tmp, cmap='Blues', xticklabels=x_labs, yticklabels=y_labs, **kwargs, fmt='g')
 fig.set_ylabel('Actual')
 fig.set_xlabel('Predicted')
 fig.title.set_text('Confusion matrix for predictions\n model')
