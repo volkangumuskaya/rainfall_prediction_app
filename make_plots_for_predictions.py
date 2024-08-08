@@ -3,6 +3,8 @@ from sklearn.metrics import accuracy_score,classification_report,confusion_matri
 import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
 
 #plot heatmap
 print('Reading daily_prediction.csv')
@@ -19,8 +21,7 @@ kwargs = {
     'annot': True}
 df.columns
 
-from plotly.subplots import make_subplots
-import plotly.graph_objects as go
+
 df['error']=df['rain_amount_mm_prediction']-df['next_day_rain_mm']
 df['date']=df['date'].astype('str')
 fig = make_subplots(specs=[[{"secondary_y": True}]])
