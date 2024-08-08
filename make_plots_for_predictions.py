@@ -49,7 +49,7 @@ fig.update_traces(marker=dict(size=10,
                               line=dict(width=1, color='black')),
                   selector=dict(mode='markers'))
 fig.update_layout(
-    title="Rain prediction of Eindhoven",
+    title="Rain prediction for Eindhoven",
     xaxis_title="Date",
     yaxis_title="Rain amount",
     legend_title="Legend",
@@ -81,7 +81,7 @@ y_labs=tmp.index.to_list()
 fig=sns.heatmap(tmp, cmap='Blues', xticklabels=x_labs, yticklabels=y_labs, **kwargs, fmt='g')
 fig.set_ylabel('Actual')
 fig.set_xlabel('Predicted')
-fig.title.set_text('Confusion matrix for predictions\n model')
+fig.title.set_text('Confusion matrix for daily predictions')
 print("preds_actuals_confusion_matrix created")
 path='images/preds_actuals_confusion_matrix.png'
 plt.savefig(path)
