@@ -11,8 +11,11 @@ print('Reading daily_prediction.csv')
 filename='files/daily_prediction.csv'
 df=pd.read_csv(filename)
 
+
 y_max=np.ceil(max(df.rain_amount_mm_prediction.max(),df.next_day_rain_mm.max())/20)*20
 y_min=-y_max
+
+print('sss')
 
 kwargs = {
     'cbar': False,
@@ -20,7 +23,7 @@ kwargs = {
     'linecolor': 'white',
     'annot': True}
 df.columns
-
+print('sss')
 
 df['error']=df['rain_amount_mm_prediction']-df['next_day_rain_mm']
 df['date']=df['date'].astype('str')
