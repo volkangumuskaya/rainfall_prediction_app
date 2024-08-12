@@ -50,7 +50,7 @@ fig.update_traces(marker=dict(size=10,
                               line=dict(width=1, color='black')),
                   selector=dict(mode='markers'))
 fig.update_layout(
-    title="Rain prediction for Eindhoven",
+    title="Rain prediction for Eindhoven New from codespace",
     xaxis_title="Date",
     yaxis_title="Rain amount",
     legend_title="Legend",
@@ -58,8 +58,8 @@ fig.update_layout(
 fig.update_yaxes(title_text="Rain amount", secondary_y=True)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=False)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=True)
-print("Preds-actuals-errors fig created")
-path='images/test1.png'
+print("Preds-actuals-errors fig created NEWWWWWWW")
+path='images/test3.png'
 # plt.savefig(path)
 import plotly.io as pio
 pio.write_image(fig, path,width=1600, height=900)
@@ -79,12 +79,12 @@ tmp = pd.DataFrame(cf_matrix)
 x_labs=tmp.columns.to_list()
 y_labs=tmp.index.to_list()
 
-fig=sns.heatmap(tmp, cmap='Blues', xticklabels=x_labs, yticklabels=y_labs, **kwargs, fmt='g')
+fig=sns.heatmap(tmp, cmap='Oranges', xticklabels=x_labs, yticklabels=y_labs, **kwargs, fmt='g')
 fig.set_ylabel('Actual')
 fig.set_xlabel('Predicted')
-fig.title.set_text('Confusion matrix for daily predictions')
+fig.title.set_text('Confusion matrix for daily predictions from codespace')
 print("preds_actuals_confusion_matrix created")
-path='images/test2.png'
+path='images/test4.png'
 plt.savefig(path)
 print("fig saved to: ", path)
 plt.close('all')
