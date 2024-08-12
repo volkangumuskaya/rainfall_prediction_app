@@ -82,7 +82,7 @@ y_labs=tmp.index.to_list()
 fig=sns.heatmap(tmp, cmap='Oranges', xticklabels=x_labs, yticklabels=y_labs, **kwargs, fmt='g')
 fig.set_ylabel('Actual')
 fig.set_xlabel('Predicted')
-fig.title.set_text('Confusion matrix for daily predictions from codespace')
+fig.title.set_text('Confusion matrix for daily predictions from codespace editor')
 print("preds_actuals_confusion_matrix created")
 path='images/test4.png'
 plt.savefig(path)
