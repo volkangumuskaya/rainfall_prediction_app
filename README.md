@@ -56,7 +56,7 @@ Here, obviously we are not trying to have a full blown weather model. The whole 
 - **Output**:
   - LGBM models - classification and regression (`files/rainfall_models.pickle`).
   - `files/train_test_set_comprehensive.csv` includes detailed data on training and testing set, errors, etc for tracking purposes if/when things go south.
-  - `images` folder includes the confusion matrices. For example:
+  - `images` folder includes the confusion matrices where 1: Rain, 0: No rain. For example:
     
 <img src="images/confusion_matrix_train.png" width="425"/> <img src="images/confusion_matrix_test.png" width="425"/> 
 
@@ -80,8 +80,10 @@ Here we plot actuals, predictions and errors of the ML model. The first plt visu
 - **Input**: Daily predictions file
 - **Output**: Plots
 
-**Predictions vs actual rainfall (in mm) plotted against days (`YYYYMMDD` format)**
+**Predictions vs actual rainfall (in mm) plotted against days (`YYYYMMDD` format). Regression model used**
+
 <img src="images/preds_actuals_errors.png" width="850"/> 
 
-**Confusion matrix**
+**Confusion matrix using the classification models. 1: Rain, 0: No rain**
+
 <img src="images/preds_actuals_confusion_matrix.png" width="425"/> 
