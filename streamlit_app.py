@@ -36,7 +36,7 @@ df = get_df()
 '''
 # :earth_americas: Daily predictions
 
-Some explanations here
+Some explanations here and there
 '''
 
 # Add some spacing
