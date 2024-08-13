@@ -25,6 +25,7 @@ def get_df():
     DATA_FILENAME = Path(__file__).parent/'files/daily_prediction.csv'
     tmp_df = pd.read_csv(DATA_FILENAME)
     print ('df read with shape ',tmp_df.shape,' and type ',type(tmp_df))
+    print ('df min and max ',tmp_df['date'].min(),tmp_df['date'].max())
     return tmp_df
 
 df = get_df()
@@ -45,7 +46,7 @@ Some explanations here and there
 
 min_value = df['date'].min()
 max_value = df['date'].max()
-
+print("min",min_value,'max',max_value)
 
 
 from_year, to_year = st.slider(
