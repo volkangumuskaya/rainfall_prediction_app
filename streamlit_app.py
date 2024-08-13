@@ -78,7 +78,7 @@ filtered_df = df[
 st.header('GDP over time', divider='gray')
 
 ''
-
+df['date']=df['date'].astype('str')
 st.line_chart(
     filtered_df,
     x='date',
