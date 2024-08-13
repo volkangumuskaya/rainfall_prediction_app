@@ -9,8 +9,8 @@ import datetime
 import calendar
 
 #set end date to 1 ago
-end_date=int((datetime.date.today()-datetime.timedelta(days=1)).strftime('%Y%m%d'))
-start_date=int((datetime.date.today()-datetime.timedelta(days=2)).strftime('%Y%m%d'))
+end_date=int((datetime.date.today()-datetime.timedelta(days=0)).strftime('%Y%m%d'))
+start_date=int((datetime.date.today()-datetime.timedelta(days=1)).strftime('%Y%m%d'))
 
 data = {
     'start': start_date,
