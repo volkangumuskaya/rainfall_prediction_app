@@ -161,4 +161,4 @@ print('saving to path:',path)
 df['pred_run_on']=str(datetime.datetime.now())
 df['used_model']=model_id
 print(df)
-df.to_csv(path,mode='w',header=False,index=False)
+df.to_csv(path,mode='w',header=True,index=False)
