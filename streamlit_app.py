@@ -158,7 +158,7 @@ fig.update_layout(
 )
 fig.update_yaxes(title_text="Rain amount", secondary_y=True)
 fig.update_layout(xaxis_type='category')
-fig.update_xaxes(tickangle=90)
+fig.update_xaxes(tickangle=270)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=False)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=True)
 st.plotly_chart(fig)
