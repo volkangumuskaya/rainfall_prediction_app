@@ -8,7 +8,7 @@ import numpy as np
 import datetime
 import calendar
 
-#set end date to 1 ago
+#set date to 10 days ago
 end_date=int((datetime.date.today()-datetime.timedelta(days=1)).strftime('%Y%m%d'))
 start_date=int((datetime.date.today()-datetime.timedelta(days=10)).strftime('%Y%m%d'))
 
