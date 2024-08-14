@@ -38,9 +38,8 @@ df = get_df()
 # :rain_cloud: Daily rain predictions for the cities in Netherlands
 
 This is an example project to demonstrate MLOps, data visualisation and DS skills. The prediction algorithm is a simple model in the sole purpose of demosntration purposes. 
-This is not a full-blown weather model that aims to provide industry standard predictions. More can be found in the github repo: 
-
-For detailed info please [check here](https://github.com/volkangumuskaya/rainfall_prediction_app/blob/main/README.md)
+This is not a full-blown weather model that aims to provide industry standard predictions. 
+More can be found in the [github repo here](https://github.com/volkangumuskaya/rainfall_prediction_app/blob/main/README.md)
 
 The data is streamed using [KNMI API](https://daggegevens.knmi.nl/klimatologie/daggegevens)
 '''
