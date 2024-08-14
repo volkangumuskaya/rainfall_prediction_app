@@ -47,6 +47,7 @@ For detailed info please [check here](https://github.com/volkangumuskaya/rainfal
 ''
 ''
 df=df.fillna(0)
+df = df.replace('',0)
 min_value = df['date'].min()
 max_value = df['date'].max()
 print("min",min_value,'max',max_value)
