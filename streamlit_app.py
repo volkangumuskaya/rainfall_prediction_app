@@ -149,7 +149,7 @@ fig.add_trace(
 )
 
 
-fig.update_traces(marker=dict(size=4,
+fig.update_traces(marker=dict(size=8,
                               line=dict(width=0.3, color='black')),
                   selector=dict(mode='markers'))
 fig.update_layout(
