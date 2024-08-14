@@ -99,7 +99,7 @@ import plotly.graph_objects as go
 selected_stat = st.selectbox(
     'Which station to be inspected in detail?',
     stations,
-    index="Eindhoven"
+    ["Eindhoven"]
 )
 
 #plot detailed
