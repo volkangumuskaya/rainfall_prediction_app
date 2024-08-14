@@ -3,6 +3,8 @@ import pandas as pd
 import math
 from pathlib import Path
 
+
+
 # Set the title and favicon that appear in the Browser's tab bar.
 st.set_page_config(
     page_title='volkan-ai',
@@ -62,7 +64,7 @@ if not len(stations):
 selected_stations = st.multiselect(
     'Which station would you like to view?',
     stations,
-    ["Eindhoven"])
+    ["Eindhoven","Rotterdam"])
 
 ''
 
