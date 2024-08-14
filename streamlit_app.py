@@ -126,3 +126,38 @@ st.line_chart(
 #             delta=growth,
 #             delta_color=delta_color
 #         )
+
+# Sample data
+categories = ['A', 'B', 'C', 'D', 'E']
+bar_values = [3, 7, 2, 5, 8]
+line_values = [2, 6, 4, 8, 7]
+# Create a figure
+fig = go.Figure()
+
+# Add bar trace
+fig.add_trace(go.Bar(
+    x=categories,
+    y=bar_values,
+    name='Bar Chart',
+    marker_color='blue'
+))
+
+# Add line trace
+fig.add_trace(go.Scatter(
+    x=categories,
+    y=line_values,
+    name='Line Chart',
+    mode='lines+markers',
+    marker_color='red'
+))
+
+# Update layout
+fig.update_layout(
+    title='Bar and Line Chart',
+    xaxis_title='Categories',
+    yaxis_title='Values',
+    barmode='group'
+)
+
+# Display the chart in Streamlit
+st.plotly_chart(fig)
