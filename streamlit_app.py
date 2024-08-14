@@ -40,7 +40,7 @@ df = get_df()
 This is an example project to demonstrate MLOps, data visualisation and DS skills. The prediction algorithm is a simple model in the sole purpose of demosntration purposes. 
 This is not a full-blown weather model that aims to provide industry standard predictions. More can be found in the github repo: 
 
-For further info please [check here](https://github.com/volkangumuskaya/rainfall_prediction_app/blob/main/README.md)
+For detailed info please [check here](https://github.com/volkangumuskaya/rainfall_prediction_app/blob/main/README.md)
 '''
 
 # Add some spacing
