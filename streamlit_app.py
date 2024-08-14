@@ -79,9 +79,9 @@ filtered_df = df[
     & (df['date'] <= to_year)
     & (from_year <= df['date'])
 ]
-print(filtered_df)
-print(df)
-print(stations)
+# print(filtered_df)
+# print(df)
+# print(stations)
 st.header('Rainfall predictions', divider='gray')
 
 ''
@@ -96,23 +96,25 @@ st.line_chart(
 ''
 ''
 
-import pandas as pd
-from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
-import seaborn as sns
+# import pandas as pd
+# from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
+# import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
 selected_stat = st.selectbox(
-    'Which station to be inspected?',
+    'Which station to be inspected in detail?',
     stations
 )
-#plot heatmap
-# print('Reading daily_prediction.csv')
-# filename='files/daily_prediction.csv'
-# df=pd.read_csv(filename)
-df=df[df['station_name']==selected_stat].copy()
+
+#plot detailed
+df = df[
+    (df['station_name']==selected_stat)
+    & (df['date'] <= to_year)
+    & (from_year <= df['date'])
+].copy()
 df['date']=df['date'].astype('str')
 y_max=np.ceil(max(df.rain_amount_mm_prediction.max(),df.next_day_rain_mm.max())/20)*20
 y_min=-y_max
