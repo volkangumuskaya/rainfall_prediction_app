@@ -35,7 +35,7 @@ df = get_df()
 
 # Set the title that appears at the top of the page.
 '''
-# :rain_cloud: Daily rain predictions for some cities in the Netherlands
+# :rain_cloud: Daily rain predictions for some cities in Netherlands
 
 This is an example project to demonstrate MLOps, data visualisation and DS skills. The prediction algorithm is a simple model in the sole purpose of demosntration purposes. 
 This is not a full-blown weather model that aims to provide industry standard predictions. More can be found in the github repo: 
