@@ -147,8 +147,8 @@ fig.add_trace(
 )
 
 
-fig.update_traces(marker=dict(size=6,
-                              line=dict(width=1, color='black')),
+fig.update_traces(marker=dict(size=4,
+                              line=dict(width=0.2, color='black')),
                   selector=dict(mode='markers'))
 fig.update_layout(
     title="Detailed predictions, actuals and errors for selected station",
