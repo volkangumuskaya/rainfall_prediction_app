@@ -59,7 +59,7 @@ from_year, to_year = st.slider(
     max_value=max_value,
     value=[min_value, max_value])
 
-stations = df['station_name'].unique().sort_values()
+stations = df['station_name'].sort_values().unique()
 
 if not len(stations):
     st.warning("Select at least one station")
