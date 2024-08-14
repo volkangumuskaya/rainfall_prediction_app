@@ -104,14 +104,14 @@ import matplotlib.pyplot as plt
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
-selected_stat = st.sidebar.selectbox(
+selected_stat = st.selectbox(
     'Which station to be inspected?',
     stations
 )
 #plot heatmap
-print('Reading daily_prediction.csv')
-filename='files/daily_prediction.csv'
-df=pd.read_csv(filename)
+# print('Reading daily_prediction.csv')
+# filename='files/daily_prediction.csv'
+# df=pd.read_csv(filename)
 df=df[df['station_name']==selected_stat]
 y_max=np.ceil(max(df.rain_amount_mm_prediction.max(),df.next_day_rain_mm.max())/20)*20
 y_min=-y_max
