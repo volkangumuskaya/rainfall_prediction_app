@@ -10,7 +10,7 @@ import calendar
 
 #set end date to 1 ago
 end_date=int((datetime.date.today()-datetime.timedelta(days=1)).strftime('%Y%m%d'))
-start_date=int((datetime.date.today()-datetime.timedelta(days=2)).strftime('%Y%m%d'))
+start_date=int((datetime.date.today()-datetime.timedelta(days=10)).strftime('%Y%m%d'))
 
 data = {
     'start': start_date,
@@ -155,10 +155,10 @@ df_test = pd.DataFrame({'chance_of_rain_prediction':chance_of_rain_prediction,
                         'rain_amount_mm_prediction':rain_amount_mm_prediction
                         })
 df=pd.concat([df,df_test],axis=1)
-df=df.sort_values('date',ascending=False).drop_duplicates(subset=['station'])
+# df=df.sort_values('date',ascending=False).drop_duplicates(subset=['station'])
 path='files/daily_prediction.csv'
 print('saving to path:',path)
 df['pred_run_on']=str(datetime.datetime.now())
 df['used_model']=model_id
 print(df)
-df.to_csv(path,mode='a',header=False,index=False)
+df.to_csv(path,mode='w',header=False,index=False)
