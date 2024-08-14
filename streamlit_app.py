@@ -46,7 +46,7 @@ For detailed info please [check here](https://github.com/volkangumuskaya/rainfal
 # Add some spacing
 ''
 ''
-
+df=df.fillna(0)
 min_value = df['date'].min()
 max_value = df['date'].max()
 print("min",min_value,'max',max_value)
