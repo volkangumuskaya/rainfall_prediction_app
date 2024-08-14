@@ -126,7 +126,7 @@ st.line_chart(
 #             delta=growth,
 #             delta_color=delta_color
 #         )
-
+import plotly.graph_objects as go
 # Sample data
 categories = ['A', 'B', 'C', 'D', 'E']
 bar_values = [3, 7, 2, 5, 8]
