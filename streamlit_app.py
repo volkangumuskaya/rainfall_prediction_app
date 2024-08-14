@@ -5,8 +5,8 @@ from pathlib import Path
 
 # Set the title and favicon that appear in the Browser's tab bar.
 st.set_page_config(
-    page_title='Daily predictions for Eindhoven',
-    page_icon=':earth_americas:', # This is an emoji shortcode. Could be a URL too.
+    page_title='volkan-ai',
+    page_icon=':volcano:', # This is an emoji shortcode. Could be a URL too.
 )
 
 # -----------------------------------------------------------------------------
@@ -35,9 +35,12 @@ df = get_df()
 
 # Set the title that appears at the top of the page.
 '''
-# :earth_americas: Daily predictions
+# :rain_cloud: Daily rain predictions for some cities in the Netherlands
 
-Some explanations here and there
+This is an example project to demonstrate MLOps, data visualisation and DS skills. The prediction algorithm is a simple model in the sole purpose of demosntration purposes. 
+This is not a full-blown weather model that aims to provide industry standard predictions. More can be found in the github repo: 
+
+check out this [link](https://github.com/volkangumuskaya/rainfall_prediction_app/blob/main/README.md)
 '''
 
 # Add some spacing
