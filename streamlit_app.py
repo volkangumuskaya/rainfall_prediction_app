@@ -14,12 +14,6 @@ st.set_page_config(
 
 @st.cache_data
 def get_df():
-    """Grab GDP data from a CSV file.
-
-    This uses caching to avoid having to read the file every time. If we were
-    reading from an HTTP endpoint instead of a file, it's a good idea to set
-    a maximum age to the cache with the TTL argument: @st.cache_data(ttl='1d')
-    """
     print('Reading df')
     # Instead of a CSV on disk, you could read from an HTTP endpoint here too.
     DATA_FILENAME = Path(__file__).parent/'files/daily_prediction.csv'
@@ -37,11 +31,11 @@ df = get_df()
 '''
 # :rain_cloud: Daily rain predictions for the cities in Netherlands
 
-This is an example project to demonstrate MLOps, data visualisation and DS skills. The prediction algorithm is a simple model in the sole purpose of demosntration purposes. 
-This is not a full-blown weather model that aims to provide industry standard predictions. 
+This is an example project to demonstrate MLOps, data visualisation and DS capabilities. The prediction algorithm is a simple model in the sole purpose of demonstration purposes. 
+As such, it is not a full-blown weather model that aims to provide industry standard predictions. 
 More can be found in the [github repo here](https://github.com/volkangumuskaya/rainfall_prediction_app/blob/main/README.md)
 
-The data is streamed using [KNMI API](https://daggegevens.knmi.nl/klimatologie/daggegevens)
+The data is provided via the [KNMI API](https://daggegevens.knmi.nl/klimatologie/daggegevens)
 '''
 
 # Add some spacing
@@ -70,8 +64,7 @@ selected_stations = st.multiselect(
     ["Eindhoven"])
 
 ''
-''
-''
+
 
 # Filter the data
 filtered_df = df[
@@ -82,7 +75,7 @@ filtered_df = df[
 # print(filtered_df)
 # print(df)
 # print(stations)
-st.header('Rainfall predictions', divider='gray')
+st.header('Rainfall predictions in the selected dates&stations', divider='gray')
 
 ''
 filtered_df['date']=filtered_df['date'].astype('str')
@@ -94,11 +87,7 @@ st.line_chart(
 )
 
 ''
-''
 
-# import pandas as pd
-# from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
-# import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
 from plotly.subplots import make_subplots
