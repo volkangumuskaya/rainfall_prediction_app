@@ -58,7 +58,7 @@ from_year, to_year = st.slider(
     max_value=max_value,
     value=[min_value, max_value])
 
-stations = df['station'].unique()
+stations = df['station_name'].unique()
 
 if not len(stations):
     st.warning("Select at least one station")
@@ -66,7 +66,7 @@ if not len(stations):
 selected_stations = st.multiselect(
     'Which st would you like to view?',
     stations,
-    [370,375])
+    ["Eindhoven"])
 
 ''
 ''
@@ -74,7 +74,7 @@ selected_stations = st.multiselect(
 
 # Filter the data
 filtered_df = df[
-    (df['station'].isin(selected_stations))
+    (df['station_name'].isin(selected_stations))
     & (df['date'] <= to_year)
     & (from_year <= df['date'])
 ]
@@ -89,7 +89,7 @@ st.line_chart(
     filtered_df,
     x='date',
     y='rain_amount_mm_prediction',
-    color='month_name',
+    color='station_name',
 )
 
 ''
