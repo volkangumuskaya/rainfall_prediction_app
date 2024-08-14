@@ -65,7 +65,7 @@ if not len(stations):
     st.warning("Select at least one station")
 
 selected_stations = st.multiselect(
-    'Which st would you like to view?',
+    'Which station would you like to view?',
     stations,
     ["Eindhoven"])
 
@@ -104,11 +104,15 @@ import matplotlib.pyplot as plt
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
+selected_stat = st.sidebar.selectbox(
+    'Which station to be inspected?',
+    stations
+)
 #plot heatmap
 print('Reading daily_prediction.csv')
 filename='files/daily_prediction.csv'
 df=pd.read_csv(filename)
-df=df[df['station_name']=='Eindhoven']
+df=df[df['station_name']==selected_stat]
 y_max=np.ceil(max(df.rain_amount_mm_prediction.max(),df.next_day_rain_mm.max())/20)*20
 y_min=-y_max
 
@@ -160,8 +164,8 @@ print("Preds-actuals-errors fig created")
 path='images/preds_actuals_errors2.png'
 st.plotly_chart(fig)
 # plt.savefig(path)
-import plotly.io as pio
-# pio.write_image(fig, path,width=1600, height=900)
+# import plotly.io as pio
+# # pio.write_image(fig, path,width=1600, height=900)
 
-print("fig saved to: ", path)
-plt.close('all')
+# print("fig saved to: ", path)
+# plt.close('all')
