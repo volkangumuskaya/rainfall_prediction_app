@@ -96,74 +96,19 @@ st.line_chart(
 ''
 ''
 
-
-# first_year = gdp_df[gdp_df['Year'] == from_year]
-# last_year = gdp_df[gdp_df['Year'] == to_year]
-
-# st.header(f'GDP in {to_year}', divider='gray')
-
-# ''
-
-# cols = st.columns(4)
-
-# for i, country in enumerate(selected_countries):
-#     col = cols[i % len(cols)]
-
-#     with col:
-#         first_gdp = first_year[first_year['Country Code'] == country]['GDP'].iat[0] / 1000000000
-#         last_gdp = last_year[last_year['Country Code'] == country]['GDP'].iat[0] / 1000000000
-
-#         if math.isnan(first_gdp):
-#             growth = 'n/a'
-#             delta_color = 'off'
-#         else:
-#             growth = f'{last_gdp / first_gdp:,.2f}x'
-#             delta_color = 'normal'
-
-#         st.metric(
-#             label=f'{country} GDP',
-#             value=f'{last_gdp:,.0f}B',
-#             delta=growth,
-#             delta_color=delta_color
-#         )
-# import plotly.graph_objects as go
-# # Sample data
-# categories = ['A', 'B', 'C', 'D', 'E']
-# bar_values = [3, 7, 2, 5, 8]
-# line_values = [2, 6, 4, 8, 7]
-# # Create a figure
-# fig = go.Figure()
-
-# # Add line trace
-# fig.add_trace(go.Scatter(
-#     x=selected_df.date,
-#     y=selected_df.next_rain_mm,
-#     name='Line Chart',
-#     mode='lines',
-#     marker_color='red'
-# ))
-
-# # Add line trace
-# fig.add_trace(go.Scatter(
-#     x=selected_df.date,
-#     y=selected_df.rain_amount_mm_prediction,
-#     name='Line Chart',
-#     mode='markers',
-#     marker_color='red'
-# ))
-
-# # Update layout
-# fig.update_layout(
-#     title='Bar and Line Chart',
-#     xaxis_title='Categories',
-#     yaxis_title='Values'
-# )
-
-# # Display the chart in Streamlit
-# st.plotly_chart(fig)
-
+import pandas as pd
+from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
+import seaborn as sns
+import numpy as np
+import matplotlib.pyplot as plt
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
+
+#plot heatmap
+print('Reading daily_prediction.csv')
+filename='files/daily_prediction.csv'
+df=pd.read_csv(filename)
+df=df[df['station_name']=='Eindhoven']
 y_max=np.ceil(max(df.rain_amount_mm_prediction.max(),df.next_day_rain_mm.max())/20)*20
 y_min=-y_max
 
@@ -211,4 +156,12 @@ fig.update_layout(
 fig.update_yaxes(title_text="Rain amount", secondary_y=True)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=False)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=True)
+print("Preds-actuals-errors fig created")
+path='images/preds_actuals_errors2.png'
 st.plotly_chart(fig)
+# plt.savefig(path)
+import plotly.io as pio
+# pio.write_image(fig, path,width=1600, height=900)
+
+print("fig saved to: ", path)
+plt.close('all')
