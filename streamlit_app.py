@@ -28,6 +28,7 @@ df = get_df()
 # Draw the actual page
 
 # Set the title that appears at the top of the page.
+st.image('images/el-chalten.jpg','El Chalten, Patagonia')
 '''
 # :rain_cloud: Daily rain predictions for the cities in Netherlands
 
