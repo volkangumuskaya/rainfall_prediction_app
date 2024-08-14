@@ -53,17 +53,11 @@ min_value = df['date'].min()
 max_value = df['date'].max()
 print("min",min_value,'max',max_value)
 
-start_color, end_color = st.select_slider(
-    "Select a range of color wavelength",
+from_year, to_year = st.select_slider(
+    "Select a range of date",
     options=df.date.sort_values().unique(),
     value=(min_value, max_value),
 )
-
-from_year, to_year = st.slider(
-    'Which dates are you interested in?',
-    min_value=min_value,
-    max_value=max_value,
-    value=[min_value, max_value])
 
 stations = df['station_name'].sort_values().unique()
 
