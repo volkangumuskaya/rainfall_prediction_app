@@ -66,7 +66,7 @@ if not len(stations):
 selected_stations = st.multiselect(
     'Which st would you like to view?',
     stations,
-    [370])
+    [370,375])
 
 ''
 ''
