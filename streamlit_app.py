@@ -59,7 +59,7 @@ from_year, to_year = st.slider(
     max_value=max_value,
     value=[min_value, max_value])
 
-stations = df['station_name'].unique()
+stations = df['station_name'].unique().sort_values()
 
 if not len(stations):
     st.warning("Select at least one station")
@@ -121,8 +121,6 @@ kwargs = {
     'linewidths': 0.2,
     'linecolor': 'white',
     'annot': True}
-df.columns
-
 
 df['error']=df['rain_amount_mm_prediction']-df['next_day_rain_mm']
 df['date']=df['date'].astype('str')
