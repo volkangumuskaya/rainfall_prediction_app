@@ -80,6 +80,7 @@ filtered_df = df[
 ]
 print(filtered_df)
 print(df)
+print(stations)
 st.header('Rainfall predictions', divider='gray')
 
 ''
