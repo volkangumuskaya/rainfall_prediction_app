@@ -78,7 +78,8 @@ filtered_df = df[
     & (df['date'] <= to_year)
     & (from_year <= df['date'])
 ]
-
+print(filtered_df)
+print(df)
 st.header('Rainfall predictions', divider='gray')
 
 ''
