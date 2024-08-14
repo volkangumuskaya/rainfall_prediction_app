@@ -126,38 +126,88 @@ st.line_chart(
 #             delta=growth,
 #             delta_color=delta_color
 #         )
+# import plotly.graph_objects as go
+# # Sample data
+# categories = ['A', 'B', 'C', 'D', 'E']
+# bar_values = [3, 7, 2, 5, 8]
+# line_values = [2, 6, 4, 8, 7]
+# # Create a figure
+# fig = go.Figure()
+
+# # Add line trace
+# fig.add_trace(go.Scatter(
+#     x=selected_df.date,
+#     y=selected_df.next_rain_mm,
+#     name='Line Chart',
+#     mode='lines',
+#     marker_color='red'
+# ))
+
+# # Add line trace
+# fig.add_trace(go.Scatter(
+#     x=selected_df.date,
+#     y=selected_df.rain_amount_mm_prediction,
+#     name='Line Chart',
+#     mode='markers',
+#     marker_color='red'
+# ))
+
+# # Update layout
+# fig.update_layout(
+#     title='Bar and Line Chart',
+#     xaxis_title='Categories',
+#     yaxis_title='Values'
+# )
+
+# # Display the chart in Streamlit
+# st.plotly_chart(fig)
+
+from plotly.subplots import make_subplots
 import plotly.graph_objects as go
-# Sample data
-categories = ['A', 'B', 'C', 'D', 'E']
-bar_values = [3, 7, 2, 5, 8]
-line_values = [2, 6, 4, 8, 7]
-# Create a figure
-fig = go.Figure()
+y_max=np.ceil(max(df.rain_amount_mm_prediction.max(),df.next_day_rain_mm.max())/20)*20
+y_min=-y_max
 
-# Add bar trace
-fig.add_trace(go.Bar(
-    x=categories,
-    y=bar_values,
-    name='Bar Chart',
-    marker_color='blue'
-))
+kwargs = {
+    'cbar': False,
+    'linewidths': 0.2,
+    'linecolor': 'white',
+    'annot': True}
+df.columns
 
-# Add line trace
-fig.add_trace(go.Scatter(
-    x=categories,
-    y=line_values,
-    name='Line Chart',
-    mode='lines+markers',
-    marker_color='red'
-))
 
-# Update layout
-fig.update_layout(
-    title='Bar and Line Chart',
-    xaxis_title='Categories',
-    yaxis_title='Values',
-    barmode='group'
+df['error']=df['rain_amount_mm_prediction']-df['next_day_rain_mm']
+df['date']=df['date'].astype('str')
+fig = make_subplots(specs=[[{"secondary_y": True}]])
+fig.add_trace(
+    go.Bar(x=df.date, y=df.error,
+           # text=round(metrics.R2, 2),
+           marker_color='dodgerblue', opacity=0.9,
+           name="Error"),
+    secondary_y=False
 )
 
-# Display the chart in Streamlit
-st.plotly_chart(fig)
+fig.add_trace(
+    go.Scatter(x=df.date, y=df.next_day_rain_mm,
+               mode='markers', name="Next day rain"),
+    secondary_y=True
+)
+
+fig.add_trace(
+    go.Scatter(x=df.date, y=df.rain_amount_mm_prediction,
+               mode='markers', name="Rain prediction"),
+    secondary_y=True
+)
+
+
+fig.update_traces(marker=dict(size=10,
+                              line=dict(width=1, color='black')),
+                  selector=dict(mode='markers'))
+fig.update_layout(
+    title="Rain prediction for Eindhoven",
+    xaxis_title="Date",
+    yaxis_title="Rain amount",
+    legend_title="Legend",
+)
+fig.update_yaxes(title_text="Rain amount", secondary_y=True)
+fig.update_yaxes(range=[y_min,y_max], secondary_y=False)
+fig.update_yaxes(range=[y_min,y_max], secondary_y=True)
