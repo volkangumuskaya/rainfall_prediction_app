@@ -112,7 +112,7 @@ selected_stat = st.selectbox(
 # print('Reading daily_prediction.csv')
 # filename='files/daily_prediction.csv'
 # df=pd.read_csv(filename)
-df=df[df['station_name']==selected_stat]
+df=df[df['station_name']==selected_stat].copy()
 df['date']=df['date'].astype('str')
 y_max=np.ceil(max(df.rain_amount_mm_prediction.max(),df.next_day_rain_mm.max())/20)*20
 y_min=-y_max
@@ -124,7 +124,7 @@ kwargs = {
     'annot': True}
 
 df['error']=df['rain_amount_mm_prediction']-df['next_day_rain_mm']
-df['date']=df['date'].astype('str')
+
 fig = make_subplots(specs=[[{"secondary_y": True}]])
 fig.add_trace(
     go.Bar(x=df.date, y=df.error,
@@ -147,11 +147,11 @@ fig.add_trace(
 )
 
 
-fig.update_traces(marker=dict(size=10,
+fig.update_traces(marker=dict(size=6,
                               line=dict(width=1, color='black')),
                   selector=dict(mode='markers'))
 fig.update_layout(
-    title="Rain prediction for Eindhoven",
+    title="Detailed predictions, actuals and errors for selected station",
     xaxis_title="Date",
     yaxis_title="Rain amount",
     legend_title="Legend",
@@ -160,12 +160,4 @@ fig.update_yaxes(title_text="Rain amount", secondary_y=True)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=False)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=True)
 fig['layout']['yaxis'].update(autorange = True)
-print("Preds-actuals-errors fig created")
-path='images/preds_actuals_errors2.png'
 st.plotly_chart(fig)
-# plt.savefig(path)
-# import plotly.io as pio
-# # pio.write_image(fig, path,width=1600, height=900)
-
-# print("fig saved to: ", path)
-# plt.close('all')
