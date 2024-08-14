@@ -36,8 +36,16 @@ selected_cols=['STN', 'YYYYMMDD', 'DDVEC', 'FG', 'TG', 'TN', 'TX',
           'DR', 'RH', 'RHX', 'RHXH',
           'PG', 'PX', 'PN','UX', 'UN']
 
+print(df.head(10))
+
+stations_df=pd.read_csv('files/station_list_klimatologie.csv')
+df=pd.merge(df,stations_df,how='left',on='STN')
+df['station_name']=df['station_name'].fillna('unknown')
+print(df.head(10))
+
 col_names_dict = {
     "STN": "station",
+    "station_name": "station_name",
     "YYYYMMDD": "date",
     "DDVEC": "wind_direction",
     'FG':"mean_wind_speed",

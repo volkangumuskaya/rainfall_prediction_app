@@ -9,14 +9,14 @@ import datetime
 import calendar
 
 #set end date to 1 ago
-end_date=int((datetime.date.today()-datetime.timedelta(days=0)).strftime('%Y%m%d'))
-start_date=int((datetime.date.today()-datetime.timedelta(days=1)).strftime('%Y%m%d'))
+end_date=int((datetime.date.today()-datetime.timedelta(days=1)).strftime('%Y%m%d'))
+start_date=int((datetime.date.today()-datetime.timedelta(days=2)).strftime('%Y%m%d'))
 
 data = {
     'start': start_date,
     'end': end_date,
     'vars': 'ALL',
-    'stns': '370',
+    'stns': 'ALL',
 }
 
 URL = "https://daggegevens.knmi.nl/klimatologie/daggegevens"
@@ -42,13 +42,25 @@ s=s.replace("'",'') #delete '
 df=pd.read_csv(io.StringIO(s), sep=",")
 type(df)
 
+
+
 #data preparation
-selected_cols=['STN', 'YYYYMMDD', 'DDVEC', 'FG', 'TG', 'TN', 'TX',
+print(df.head(10))
+
+stations_df=pd.read_csv('files/station_list_klimatologie.csv')
+df=pd.merge(df,stations_df,how='left',on='STN')
+df['station_name']=df['station_name'].fillna('unknown')
+print(df.head(10))
+
+selected_cols=['STN','station_name', 'YYYYMMDD', 'DDVEC', 'FG', 'TG', 'TN', 'TX',
           'DR', 'RH', 'RHX', 'RHXH',
           'PG', 'PX', 'PN','UX', 'UN']
 
+
+
 col_names_dict = {
     "STN": "station",
+    "station_name": "station_name",
     "YYYYMMDD": "date",
     "DDVEC": "wind_direction",
     'FG':"mean_wind_speed",
@@ -143,8 +155,10 @@ df_test = pd.DataFrame({'chance_of_rain_prediction':chance_of_rain_prediction,
                         'rain_amount_mm_prediction':rain_amount_mm_prediction
                         })
 df=pd.concat([df,df_test],axis=1)
+df=df.sort_values('date',ascending=False).drop_duplicates(subset=['station'])
 path='files/daily_prediction.csv'
 print('saving to path:',path)
 df['pred_run_on']=str(datetime.datetime.now())
 df['used_model']=model_id
-df.head(1).to_csv(path,mode='a',header=False,index=False)
+print(df)
+df.to_csv(path,mode='a',header=False,index=False)
