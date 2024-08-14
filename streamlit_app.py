@@ -157,6 +157,7 @@ fig.update_layout(
     legend_title="Legend",
 )
 fig.update_yaxes(title_text="Rain amount", secondary_y=True)
+fig.update_layout(xaxis_type='category')
 fig.update_yaxes(range=[y_min,y_max], secondary_y=False)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=True)
 st.plotly_chart(fig)
