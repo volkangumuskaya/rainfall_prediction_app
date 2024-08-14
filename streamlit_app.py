@@ -113,6 +113,7 @@ selected_stat = st.selectbox(
 # filename='files/daily_prediction.csv'
 # df=pd.read_csv(filename)
 df=df[df['station_name']==selected_stat]
+df['date']=df['date'].astype('str')
 y_max=np.ceil(max(df.rain_amount_mm_prediction.max(),df.next_day_rain_mm.max())/20)*20
 y_min=-y_max
 
@@ -158,6 +159,7 @@ fig.update_layout(
 fig.update_yaxes(title_text="Rain amount", secondary_y=True)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=False)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=True)
+fig['layout']['yaxis'].update(autorange = True)
 print("Preds-actuals-errors fig created")
 path='images/preds_actuals_errors2.png'
 st.plotly_chart(fig)
