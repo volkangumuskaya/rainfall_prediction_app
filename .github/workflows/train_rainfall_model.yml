@@ -2,7 +2,7 @@ name: Train rainfall model
 run-name: ${{ github.actor }} is testing training rainfall model
 on: 
   schedule:
-    - cron: '00 13 * * 0'
+    - cron: '30 5 * * 0'
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
