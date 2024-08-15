@@ -2,7 +2,7 @@ name: Make plots for daily predictions
 run-name: ${{ github.actor }} is testing make plots for predictions
 on: 
   schedule:
-    - cron: '15 14 * * *'
+    - cron: '30 6 * * *'
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
