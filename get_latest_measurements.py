@@ -100,6 +100,8 @@ df['Wind_Speed_kmh']=df['Wind_Speed_kmh']*3.6
 df['Total_cloud_cover_percentage']=df['Total_cloud_cover_percentage']*100/8
 df.loc[df['Total_cloud_cover_percentage'] >= 100, 'Total_cloud_cover_percentage'] = 100
 df.loc[df['Total_cloud_cover_percentage'] >= 100, 'Total_cloud_cover_percentage'] = 100
+tmp = df.select_dtypes(include=[np.number])
+df.loc[:, tmp.columns] = np.round(tmp,2)
 
 df=df.fillna('-')
 
