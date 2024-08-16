@@ -1,0 +1,6 @@
+stationname,Rainfall_Duration_last_hour_minutes,Wind_Direction,Wind_Speed_kmh,Total_cloud_cover_percentage,Air_pressure_in_hPa,Amount_Rainfall_last_Hour_in_mm,Temperature
+AMSTERDAM/SCHIPHOL AP,20.0,7.3,14.904,100.0,1014.72,0.169,-
+ROTTERDAM GEULHAVEN,-,9.7,14.616,-,-,-,-
+ROTTERDAM THE HAGUE AP,0.0,12.2,10.692,100.0,1014.87,0.0,21.0
+EINDHOVEN AP,0.0,8.8,22.464000000000002,100.0,1015.64,0.0,21.7
+MAASTRICHT AACHEN AP,0.0,12.8,10.98,100.0,1016.37,0.0,21.2
