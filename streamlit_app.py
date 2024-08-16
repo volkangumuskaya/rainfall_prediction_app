@@ -206,7 +206,7 @@ st.header('Latest measurements', divider='red')
 for i in range(0, len(df)):
     print ('row:',i)
     st.subheader(df.iloc[i]['stationname'], divider='gray')
-    st.text(df.iloc[i]['Time'])
+    st.text(df.iloc[i]['Time'],' UTC')
     cols = st.columns(3)
     for j,k in zip(range(2, len(df.columns)), range(0, len(df.columns)-2)):
         col = cols[k % len(cols)]
