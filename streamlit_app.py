@@ -31,6 +31,8 @@ df = get_df(filename)
 # Set the title that appears at the top of the page.
 st.image('images/el-chalten.jpg','El Chalten, Patagonia')
 st.sidebar.title("")
+with st.sidebar:
+    st.image('images/zibzib-warhol.png','Zibzib')
 '''
 # :rain_cloud: Daily rain predictions for the cities in Netherlands
 
