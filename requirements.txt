@@ -6,6 +6,7 @@ scikit-learn
 lightgbm
 numpy
 xarray
+netCDF4
 kaleido
 seaborn
 plotly
