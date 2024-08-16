@@ -75,7 +75,7 @@ filtered_df = df[
     & (from_year <= df['date'])
 ]
 
-st.header('Rainfall predictions in the selected dates&stations', divider='gray')
+st.header('Rainfall predictions', divider='gray')
 
 ''
 filtered_df['date']=filtered_df['date'].astype('str')
