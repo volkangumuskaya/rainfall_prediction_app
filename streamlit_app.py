@@ -213,7 +213,7 @@ for i in range(0, len(df)):
         with col:
             st.metric(
                 label=df.columns[j],
-                value=df.iloc[i][j]
+                value=str(int(df.iloc[i][j]*100)/100)
             )
 
 
