@@ -176,7 +176,7 @@ col_names_dict = {
 
 df=df.rename(columns=col_names_dict)
 
-st.header('Latest measurements c', divider='red')
+st.header('Latest measurements', divider='red')
 
 for i in range(0, len(df)):
     st.subheader(df.iloc[i]['stationname'], divider='gray')
