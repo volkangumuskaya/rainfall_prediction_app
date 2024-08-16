@@ -1,8 +1,6 @@
 name: Get latest measurements via knmi api
 run-name: ${{ github.actor }} is testing get latest measurmenets
-on: 
-  schedule:
-    - cron: '30 * * * *'
+on: workflow_dispatch
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
