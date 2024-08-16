@@ -79,6 +79,7 @@ selected_cols=['station','time','stationname','D1H','R1H','dsd','ff','pp','n','t
 
 col_names_dict = {
     "stationname": "stationname",
+    "time":"Time",
     "D1H": "Rainfall_Duration_last_hour_minutes",
     "R1H": "Amount_Rainfall_last_Hour_in_mm",
     'dsd':"Wind_Direction",
