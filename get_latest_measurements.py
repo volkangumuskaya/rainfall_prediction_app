@@ -103,6 +103,9 @@ df.loc[df['Total_cloud_cover_percentage'] >= 100, 'Total_cloud_cover_percentage'
 tmp = df.select_dtypes(include=[np.number])
 df.loc[:, tmp.columns] = np.round(tmp,2)
 
+#Remove rows with more than 1 NA values
+df=df[df.isnull().sum(axis=1)<=1]
+
 df=df.fillna('-')
 
 df.to_csv('files/latest_measurements.csv',mode='w',header=True,index=False)
