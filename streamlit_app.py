@@ -30,10 +30,11 @@ df = get_df(filename)
 
 # Set the title that appears at the top of the page.
 st.image('images/el-chalten.jpg','El Chalten, Patagonia')
-st.sidebar.title("")
+st.sidebar.title("About author")
 with st.sidebar:
     st.image('images/profile_round.png',width=170)
-    st.text([LinkedIn](https://www.linkedin.com/in/volkangumuskaya/))
+    st.text([LinkedIn])
+    st.write("[LinkedIn](%s)" %"https://www.linkedin.com/in/volkangumuskaya/")
     
 '''
 # :rain_cloud: Daily rain predictions for the cities in Netherlands
