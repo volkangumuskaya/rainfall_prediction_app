@@ -72,10 +72,10 @@ df = ds.to_dataframe()
 
 df=df[df['stationname'].str.contains(r'(?i)eindhoven|rotterdam|amsterdam|utrecht|bosch|maastricht')].copy()
 df=df.reset_index(level=[0,1])
-df.columns
+
 
 #data preparation
-selected_cols=['station','time','stationname','D1H','R1H','dsd','ff','pp','n','tn','tx']
+selected_cols=['station','stationname','time','D1H','R1H','dsd','ff','pp','n','tn','tx']
 
 col_names_dict = {
     "stationname": "stationname",
@@ -90,6 +90,7 @@ col_names_dict = {
 }
 
 #filter out not selected columns
+df=df[selected_cols]
 df=df[[x for x in df.columns if x in col_names_dict]]
 
 #Convert data to the expected format by LGBM model
