@@ -201,7 +201,7 @@ for i in range(0, len(df)):
     print ('row:',i)
     st.subheader(df.iloc[i]['stationname'], divider='gray')
     cols = st.columns(3)
-    for j in range(1, len(df.columns)):
+    for j in range(1, len(df.columns)-1):
         print('col',j)
         col = cols[j % len(cols)]
         print(df.iloc[i][j])
