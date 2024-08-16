@@ -195,7 +195,7 @@ col_names_dict = {
 }
 
 df=df.rename(columns=col_names_dict)
-st.header('Latest measurements', divider='black')
+st.header('Latest measurements', divider='red')
 
 # for i in range(0, len(df)):
 #     print ('row:',i)
