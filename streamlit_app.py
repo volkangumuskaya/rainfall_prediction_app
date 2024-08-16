@@ -4,7 +4,6 @@ import math
 from pathlib import Path
 
 
-
 # Set the title and favicon that appear in the Browser's tab bar.
 st.set_page_config(
     page_title='volkan-ai',
@@ -15,16 +14,17 @@ st.set_page_config(
 # Declare some useful functions.
 
 @st.cache_data
-def get_df():
+def get_df(filename):
     print('Reading df')
     # Instead of a CSV on disk, you could read from an HTTP endpoint here too.
-    DATA_FILENAME = Path(__file__).parent/'files/daily_prediction.csv'
+    DATA_FILENAME = Path(__file__).parent/filename
     tmp_df = pd.read_csv(DATA_FILENAME)
     print ('df read with shape ',tmp_df.shape,' and type ',type(tmp_df))
     print ('df min and max ',tmp_df['date'].min(),tmp_df['date'].max())
     return tmp_df
 
-df = get_df()
+filename='files/daily_prediction.csv'
+df = get_df(filename)
 
 # -----------------------------------------------------------------------------
 # Draw the actual page
