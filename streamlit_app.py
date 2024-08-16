@@ -20,7 +20,6 @@ def get_df(filename):
     DATA_FILENAME = Path(__file__).parent/filename
     tmp_df = pd.read_csv(DATA_FILENAME)
     print ('df read with shape ',tmp_df.shape,' and type ',type(tmp_df))
-    print ('df min and max ',tmp_df['date'].min(),tmp_df['date'].max())
     return tmp_df
 
 filename='files/daily_prediction.csv'
@@ -69,16 +68,13 @@ selected_stations = st.multiselect(
 
 ''
 
-
 # Filter the data
 filtered_df = df[
     (df['station_name'].isin(selected_stations))
     & (df['date'] <= to_year)
     & (from_year <= df['date'])
 ]
-# print(filtered_df)
-# print(df)
-# print(stations)
+
 st.header('Rainfall predictions in the selected dates&stations', divider='gray')
 
 ''
@@ -109,6 +105,7 @@ df = df[
     & (from_year <= df['date'])
 ].copy()
 df['date']=df['date'].astype('str')
+df['error']=df['rain_amount_mm_prediction']-df['next_day_rain_mm']
 y_max=np.ceil(max(df.rain_amount_mm_prediction.max(),df.next_day_rain_mm.max())/20)*20
 y_min=-y_max
 
@@ -118,8 +115,7 @@ kwargs = {
     'linecolor': 'white',
     'annot': True}
 
-df['error']=df['rain_amount_mm_prediction']-df['next_day_rain_mm']
-
+#Start creating plotly plot
 fig = make_subplots(specs=[[{"secondary_y": True}]])
 fig.add_trace(
     go.Bar(x=df.date, y=df.error,
@@ -151,27 +147,21 @@ fig.update_layout(
     yaxis_title="Rain amount",
     legend_title="Legend",
 )
-fig.update_yaxes(title_text="Rain amount", secondary_y=True)
 fig.update_layout(xaxis_type='category')
 fig.update_xaxes(tickangle=270)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=False)
-fig.update_yaxes(range=[y_min,y_max], secondary_y=True)
+fig.update_yaxes(range=[y_min,y_max],title_text="Rain amount", secondary_y=True)
 st.plotly_chart(fig)
 
-###
+###Reading latest measurements
 del(df)
-print('Measurements part start')
-print('Reading df')
-# Instead of a CSV on disk, you could read from an HTTP endpoint here too.
-# DATA_FILENAME = Path(__file__).parent/'files/latest_measurements.csv'
 filename='files/latest_measurements.csv'
-df = pd.read_csv(filename)
-print ('df read with shape ',df.shape,' and type ',type(df))
-print (df.head(2))
+df = get_df(filename)
 
 
 cols=['stationname','Time','Temperature','Rainfall_Duration_last_hour_minutes','Amount_Rainfall_last_Hour_in_mm','Total_cloud_cover_percentage',
       'Air_pressure_in_hPa','Wind_Speed_kmh','Wind_Direction']
+
 df=df[cols].copy()
 col_names_dict = {
     "stationname": "stationname",
@@ -185,16 +175,10 @@ col_names_dict = {
 }
 
 df=df.rename(columns=col_names_dict)
-st.header('Latest measurements', divider='red')
 
-# for i in range(0, len(df)):
-#     print ('row:',i)
-#     for j,k in zip(range(1, len(df.columns)), range(0, len(df.columns)-1)):
-#         print('col',j,'**rank', k%3+1,df.columns[j],'val:',df.iloc[i][j])
-
+st.header('Latest measurements c', divider='red')
 
 for i in range(0, len(df)):
-    print ('row:',i)
     st.subheader(df.iloc[i]['stationname'], divider='gray')
     st.text(df.iloc[i]['Time']+' UTC')
     cols = st.columns(3)
@@ -205,18 +189,3 @@ for i in range(0, len(df)):
                 label=df.columns[j],
                 value=df.iloc[i][j]
             )
-
-
-# for i in 
-# cols = st.columns(len(df.columns)
-# for i, city in enumerate(df.stationname):
-    
-#     col = cols[i % len(cols)]
-
-#     with col:
-#         st.metric(
-#             label=f'{City}',
-#             value=f'{}B',
-#             delta=growth,
-#             delta_color=delta_color
-#         )
