@@ -182,15 +182,17 @@ print ('df read with shape ',df.shape,' and type ',type(df))
 print (df.head(2))
 
 for i in range(0, len(df)):
-    cols = st.columns(len(df.columns)
+    print ('row:',i)
+    cols = st.columns(len(df.columns))
     for j in df.columns:
+        print('col',j)
         col = cols[i % len(cols)]
         print(df.iloc[i][j])
         with col:
-        st.metric(
-            label=j,
-            value=df.iloc[i][j]
-        )
+            st.metric(
+                label=j,
+                value=df.iloc[i][j]
+            )
 
 
 # for i in 
