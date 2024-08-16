@@ -158,24 +158,14 @@ fig.update_yaxes(range=[y_min,y_max], secondary_y=False)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=True)
 st.plotly_chart(fig)
 
-# col1,col2,col3 = st.columns(3)
-# col1.metric("Temperature", "70 °F", "1.2 °F")
-# col2.metric("Wind", "9 mph", "-8%")
-# col3.metric("Humidity", "86%", "4%")
-
-# st.subheader('Eind', divider='gray')
-# col1,col2,col3 = st.columns(3)
-# col1.metric("Temperature", "70 °F", "1.2 °F")
-# col2.metric("Wind", "9 mph", "-8%")
-# col3.metric("Humidity", "86%", "4%")
-
 ###
 del(df)
 print('Measurements part start')
 print('Reading df')
 # Instead of a CSV on disk, you could read from an HTTP endpoint here too.
-DATA_FILENAME = Path(__file__).parent/'files/latest_measurements.csv'
-df = pd.read_csv(DATA_FILENAME)
+# DATA_FILENAME = Path(__file__).parent/'files/latest_measurements.csv'
+filename='files/latest_measurements.csv'
+df = get_df(filename)
 print ('df read with shape ',df.shape,' and type ',type(df))
 print (df.head(2))
 
