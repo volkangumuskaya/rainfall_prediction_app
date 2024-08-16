@@ -157,3 +157,42 @@ fig.update_xaxes(tickangle=270)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=False)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=True)
 st.plotly_chart(fig)
+
+st.metric(
+            label='label',
+            value=999,
+            delta=2,
+            delta_color='normal'
+        )
+# ###
+# del(df)
+# print('Measurements part start')
+# print('Reading df')
+# # Instead of a CSV on disk, you could read from an HTTP endpoint here too.
+# DATA_FILENAME = Path(__file__).parent/'files/latest_measurements.csv'
+# df = pd.read_csv(DATA_FILENAME)
+# print ('df read with shape ',df.shape,' and type ',type(df))
+# print (df.head(2))
+
+# cols = st.columns(4)
+
+# for i, country in enumerate(selected_countries):
+#     col = cols[i % len(cols)]
+
+#     with col:
+#         first_gdp = first_year[first_year['Country Code'] == country]['GDP'].iat[0] / 1000000000
+#         last_gdp = last_year[last_year['Country Code'] == country]['GDP'].iat[0] / 1000000000
+
+#         if math.isnan(first_gdp):
+#             growth = 'n/a'
+#             delta_color = 'off'
+#         else:
+#             growth = f'{last_gdp / first_gdp:,.2f}x'
+#             delta_color = 'normal'
+
+#         st.metric(
+#             label=f'{country} GDP',
+#             value=f'{last_gdp:,.0f}B',
+#             delta=growth,
+#             delta_color=delta_color
+#         )
