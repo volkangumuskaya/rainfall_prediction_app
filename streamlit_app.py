@@ -208,7 +208,6 @@ for i in range(0, len(df)):
     cols = st.columns(3)
     for j in range(0, len(df.columns)-1):
         col = cols[j % len(cols)+1]
-        print(df.iloc[i][j])
         with col:
             st.metric(
                 label=df.columns[j+1],
