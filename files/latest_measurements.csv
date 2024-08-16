@@ -1,6 +1,6 @@
-stationname,Rainfall_Duration_last_hour_minutes,Wind_Direction,Wind_Speed_kmh,Total_cloud_cover_percentage,Air_pressure_in_hPa,Amount_Rainfall_last_Hour_in_mm,Temperature
-AMSTERDAM/SCHIPHOL AP,20.0,7.3,14.904,100.0,1014.72,0.169,-
-ROTTERDAM GEULHAVEN,-,9.7,14.616,-,-,-,-
-ROTTERDAM THE HAGUE AP,0.0,12.2,10.692,100.0,1014.87,0.0,21.0
-EINDHOVEN AP,0.0,8.8,22.464000000000002,100.0,1015.64,0.0,21.7
-MAASTRICHT AACHEN AP,0.0,12.8,10.98,100.0,1016.37,0.0,21.2
+Time,stationname,Rainfall_Duration_last_hour_minutes,Wind_Direction,Wind_Speed_kmh,Total_cloud_cover_percentage,Air_pressure_in_hPa,Amount_Rainfall_last_Hour_in_mm,Temperature
+2024-08-16 13:10:00,AMSTERDAM/SCHIPHOL AP,0.0,25.2,6.444,100.0,1014.62,0.0,-
+2024-08-16 13:10:00,ROTTERDAM GEULHAVEN,-,6.8,11.052,-,-,-,-
+2024-08-16 13:10:00,ROTTERDAM THE HAGUE AP,0.0,18.5,6.156,100.0,1014.77,0.005,21.6
+2024-08-16 13:10:00,EINDHOVEN AP,32.2,10.2,16.236,100.0,1015.64,0.255667,21.3
+2024-08-16 13:10:00,MAASTRICHT AACHEN AP,0.0,13.8,16.092,100.0,1015.97,0.0,22.3
