@@ -184,13 +184,13 @@ print (df.head(2))
 for i in range(0, len(df)):
     print ('row:',i)
     cols = st.columns(len(df.columns))
-    for j in df.columns:
+    for j in range(0, len(df.columns)):
         print('col',j)
         col = cols[i % len(cols)]
         print(df.iloc[i][j])
         with col:
             st.metric(
-                label=j,
+                label=df.columns[j],
                 value=df.iloc[i][j]
             )
 
