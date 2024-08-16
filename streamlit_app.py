@@ -195,20 +195,24 @@ col_names_dict = {
 }
 
 df=df.rename(columns=col_names_dict)
-st.header('Latest measurements from selected stations')
+st.header('Latest measurements', divider='black')
+
+# for i in range(0, len(df)):
+#     print ('row:',i)
+#     for j in range(0, len(df.columns)-1):
+#         print('col',j,'**rank', j%3+1,df.columns[j+1])
 
 for i in range(0, len(df)):
     print ('row:',i)
     st.subheader(df.iloc[i]['stationname'], divider='gray')
     cols = st.columns(3)
-    for j in range(1, len(df.columns)-1):
-        print('col',j)
-        col = cols[j % len(cols)]
+    for j in range(0, len(df.columns)-1):
+        col = cols[j % len(cols)+1]
         print(df.iloc[i][j])
         with col:
             st.metric(
-                label=df.columns[j],
-                value=df.iloc[i][j]
+                label=df.columns[j+1],
+                value=df.iloc[i][j+1]
             )
 
 
