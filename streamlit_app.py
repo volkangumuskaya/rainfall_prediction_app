@@ -158,18 +158,16 @@ fig.update_yaxes(range=[y_min,y_max], secondary_y=False)
 fig.update_yaxes(range=[y_min,y_max], secondary_y=True)
 st.plotly_chart(fig)
 
-st.header('Latest')
-st.subheader('Rot', divider='gray')
-col1,col2,col3 = st.columns(3)
-col1.metric("Temperature", "70 °F", "1.2 °F")
-col2.metric("Wind", "9 mph", "-8%")
-col3.metric("Humidity", "86%", "4%")
+# col1,col2,col3 = st.columns(3)
+# col1.metric("Temperature", "70 °F", "1.2 °F")
+# col2.metric("Wind", "9 mph", "-8%")
+# col3.metric("Humidity", "86%", "4%")
 
-st.subheader('Eind', divider='gray')
-col1,col2,col3 = st.columns(3)
-col1.metric("Temperature", "70 °F", "1.2 °F")
-col2.metric("Wind", "9 mph", "-8%")
-col3.metric("Humidity", "86%", "4%")
+# st.subheader('Eind', divider='gray')
+# col1,col2,col3 = st.columns(3)
+# col1.metric("Temperature", "70 °F", "1.2 °F")
+# col2.metric("Wind", "9 mph", "-8%")
+# col3.metric("Humidity", "86%", "4%")
 
 ###
 del(df)
@@ -181,10 +179,14 @@ df = pd.read_csv(DATA_FILENAME)
 print ('df read with shape ',df.shape,' and type ',type(df))
 print (df.head(2))
 
+st.header('Latest measurements from selected stations')
+
+
 for i in range(0, len(df)):
     print ('row:',i)
-    cols = st.columns(len(df.columns))
-    for j in range(0, len(df.columns)):
+    st.subheader(df.iloc[i][stationname], divider='gray')
+    cols = st.columns(len(df.columns)-1)
+    for j in range(1, len(df.columns)):
         print('col',j)
         col = cols[j % len(cols)]
         print(df.iloc[i][j])
