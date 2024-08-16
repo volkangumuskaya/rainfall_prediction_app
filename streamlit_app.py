@@ -30,7 +30,7 @@ df = get_df(filename)
 
 # Set the title that appears at the top of the page.
 st.image('images/el-chalten.jpg','El Chalten, Patagonia')
-st.sidebar.title("About author")
+st.sidebar.header("About author")
 with st.sidebar:
     st.image('images/profile_round.png',width=170,caption="https://www.linkedin.com/in/volkangumuskaya/")
     
