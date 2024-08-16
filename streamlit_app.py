@@ -186,7 +186,7 @@ for i in range(0, len(df)):
     cols = st.columns(len(df.columns))
     for j in range(0, len(df.columns)):
         print('col',j)
-        col = cols[i % len(cols)]
+        col = cols[j % len(cols)]
         print(df.iloc[i][j])
         with col:
             st.metric(
