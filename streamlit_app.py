@@ -199,19 +199,20 @@ st.header('Latest measurements', divider='red')
 
 # for i in range(0, len(df)):
 #     print ('row:',i)
-#     for j in range(0, len(df.columns)-1):
-#         print('col',j,'**rank', j%3+1,df.columns[j+1])
+#     for j,k in zip(range(1, len(df.columns)), range(0, len(df.columns)-1)):
+#         print('col',j,'**rank', k%3+1,df.columns[j],'val:',df.iloc[i][j])
+
 
 for i in range(0, len(df)):
     print ('row:',i)
     st.subheader(df.iloc[i]['stationname'], divider='gray')
     cols = st.columns(3)
-    for j in range(0, len(df.columns)-1):
+    for j,k in zip(range(1, len(df.columns)), range(0, len(df.columns)-1)):
         col = cols[j % len(cols)+1]
         with col:
             st.metric(
-                label=df.columns[j+1],
-                value=df.iloc[i][j+1]
+                label=df.columns[j],
+                value=df.iloc[i][j]
             )
 
 
