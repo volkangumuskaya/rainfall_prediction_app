@@ -159,8 +159,16 @@ filename='files/latest_measurements.csv'
 df = get_df(filename)
 
 
-cols=['stationname','Time','Temperature','Rainfall_Duration_last_hour_minutes','Amount_Rainfall_last_Hour_in_mm','Total_cloud_cover_percentage',
-      'Air_pressure_in_hPa','Wind_Speed_kmh','Wind_Direction']
+cols=['stationname',
+      'Time',
+      'Temperature',
+      'Rainfall_Duration_last_hour_minutes',
+      'Amount_Rainfall_last_Hour_in_mm',
+      'Total_cloud_cover_percentage',
+      'Air_pressure_in_hPa',
+      'Wind_Speed_kmh',
+      'Wind_Direction'
+      ]
 
 df=df[cols].copy()
 col_names_dict = {
