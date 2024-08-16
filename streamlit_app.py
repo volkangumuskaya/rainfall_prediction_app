@@ -33,7 +33,7 @@ st.image('images/el-chalten.jpg','El Chalten, Patagonia')
 st.sidebar.title("About author")
 with st.sidebar:
     st.image('images/profile_round.png',width=170)
-    st.write("https://www.linkedin.com/in/volkangumuskaya/")
+    st.text("https://www.linkedin.com/in/volkangumuskaya/")
     
 '''
 # :rain_cloud: Daily rain predictions for the cities in Netherlands
