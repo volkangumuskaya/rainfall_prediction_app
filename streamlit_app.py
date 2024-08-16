@@ -179,6 +179,22 @@ df = pd.read_csv(DATA_FILENAME)
 print ('df read with shape ',df.shape,' and type ',type(df))
 print (df.head(2))
 
+
+cols=['stationname','Temperature','Rainfall_Duration_last_hour_minutes','Amount_Rainfall_last_Hour_in_mm','Total_cloud_cover_percentage',
+      'Air_pressure_in_hPa','Wind_Speed_kmh','Wind_Direction']
+df=df[cols].copy()
+col_names_dict = {
+    "stationname": "stationname",
+    "Rainfall_Duration_last_hour_minutes": "Rainfall duration (mins) ",
+    "Amount_Rainfall_last_Hour_in_mm": "Rainfall amount (mm)",
+    'Wind_Direction':"Wind Direction",
+    "Wind_Speed_kmh":'Windspeed (km/h)',
+    "Air_pressure_in_hPa":'Pressure (hPA)',
+    "Total_cloud_cover_percentage":'Cloud cover (%)',
+    'Temperature':'Temperature (C)'
+}
+
+df=df.rename(columns=col_names_dict)
 st.header('Latest measurements from selected stations')
 
 for i in range(0, len(df)):
