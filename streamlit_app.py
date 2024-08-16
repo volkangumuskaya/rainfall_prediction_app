@@ -185,7 +185,7 @@ st.header('Latest measurements from selected stations')
 for i in range(0, len(df)):
     print ('row:',i)
     st.subheader(df.iloc[i]['stationname'], divider='gray')
-    cols = st.columns(len(df.columns)-1)
+    cols = st.columns(4)
     for j in range(1, len(df.columns)):
         print('col',j)
         col = cols[j % len(cols)]
