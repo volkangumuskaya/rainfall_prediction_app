@@ -208,7 +208,7 @@ for i in range(0, len(df)):
     st.subheader(df.iloc[i]['stationname'], divider='gray')
     cols = st.columns(3)
     for j,k in zip(range(1, len(df.columns)), range(0, len(df.columns)-1)):
-        col = cols[j % len(cols)]
+        col = cols[k % len(cols)]
         with col:
             st.metric(
                 label=df.columns[j],
