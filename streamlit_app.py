@@ -165,7 +165,7 @@ print('Reading df')
 # Instead of a CSV on disk, you could read from an HTTP endpoint here too.
 # DATA_FILENAME = Path(__file__).parent/'files/latest_measurements.csv'
 filename='files/latest_measurements.csv'
-df = get_df(filename)
+df = pd.read_csv(filename)
 print ('df read with shape ',df.shape,' and type ',type(df))
 print (df.head(2))
 
