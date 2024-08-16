@@ -32,7 +32,7 @@ df = get_df(filename)
 st.image('images/el-chalten.jpg','El Chalten, Patagonia')
 st.sidebar.title("")
 with st.sidebar:
-    st.image('images/profile_round.png')
+    st.image('images/profile_round.png',width=170px)
 '''
 # :rain_cloud: Daily rain predictions for the cities in Netherlands
 
