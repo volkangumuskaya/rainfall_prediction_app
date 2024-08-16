@@ -33,7 +33,6 @@ st.image('images/el-chalten.jpg','El Chalten, Patagonia')
 st.sidebar.title("About author")
 with st.sidebar:
     st.image('images/profile_round.png',width=170)
-    st.text([LinkedIn])
     st.write("[LinkedIn](%s)" %"https://www.linkedin.com/in/volkangumuskaya/")
     
 '''
