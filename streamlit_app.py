@@ -171,35 +171,38 @@ col1.metric("Temperature", "70 °F", "1.2 °F")
 col2.metric("Wind", "9 mph", "-8%")
 col3.metric("Humidity", "86%", "4%")
 
-# ###
-# del(df)
-# print('Measurements part start')
-# print('Reading df')
-# # Instead of a CSV on disk, you could read from an HTTP endpoint here too.
-# DATA_FILENAME = Path(__file__).parent/'files/latest_measurements.csv'
-# df = pd.read_csv(DATA_FILENAME)
-# print ('df read with shape ',df.shape,' and type ',type(df))
-# print (df.head(2))
+###
+del(df)
+print('Measurements part start')
+print('Reading df')
+# Instead of a CSV on disk, you could read from an HTTP endpoint here too.
+DATA_FILENAME = Path(__file__).parent/'files/latest_measurements.csv'
+df = pd.read_csv(DATA_FILENAME)
+print ('df read with shape ',df.shape,' and type ',type(df))
+print (df.head(2))
 
-# cols = st.columns(4)
+for i in range(0, len(df)):
+    cols = st.columns(len(df.columns)
+    for j in df.columns:
+        col = cols[i % len(cols)]
+        print(df.iloc[i][j])
+        with col:
+        st.metric(
+            label=j,
+            value=df.iloc[i][j]
+        )
 
-# for i, country in enumerate(selected_countries):
+
+# for i in 
+# cols = st.columns(len(df.columns)
+# for i, city in enumerate(df.stationname):
+    
 #     col = cols[i % len(cols)]
 
 #     with col:
-#         first_gdp = first_year[first_year['Country Code'] == country]['GDP'].iat[0] / 1000000000
-#         last_gdp = last_year[last_year['Country Code'] == country]['GDP'].iat[0] / 1000000000
-
-#         if math.isnan(first_gdp):
-#             growth = 'n/a'
-#             delta_color = 'off'
-#         else:
-#             growth = f'{last_gdp / first_gdp:,.2f}x'
-#             delta_color = 'normal'
-
 #         st.metric(
-#             label=f'{country} GDP',
-#             value=f'{last_gdp:,.0f}B',
+#             label=f'{City}',
+#             value=f'{}B',
 #             delta=growth,
 #             delta_color=delta_color
 #         )
