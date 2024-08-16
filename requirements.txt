@@ -5,6 +5,7 @@ requests
 scikit-learn
 lightgbm
 numpy
+xarray
 kaleido
 seaborn
 plotly
