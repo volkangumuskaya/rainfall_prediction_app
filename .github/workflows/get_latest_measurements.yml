@@ -20,7 +20,6 @@ jobs:
     - name: Get data
       run: |
           python get_latest_measurements.py
-          python streamlit_app.py
     - name: Commit and push CSV file
       run: |
           git config --global user.name 'github-actions'
