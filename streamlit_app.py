@@ -3,6 +3,7 @@ import pandas as pd
 import math
 from pathlib import Path
 
+st.cache_data.clear()
 st.cache_resource.clear()
 # Set the title and favicon that appear in the Browser's tab bar.
 st.set_page_config(
