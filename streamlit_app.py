@@ -21,7 +21,7 @@ def get_df(filename):
     print ('df read with shape ',tmp_df.shape,' and type ',type(tmp_df))
     return tmp_df
 
-st.cache_resource.clear()
+# st.cache_resource.clear()
 filename='files/daily_prediction.csv'
 df = get_df(filename)
 
