@@ -187,11 +187,15 @@ col_names_dict = {
 
 df=df.rename(columns=col_names_dict)
 
+df.Time=df.Time.dt.tz_localize('UTC')
+df.Time=df.Time.dt.tz_convert("Europe/Amsterdam")
+df.Time=df.Time.dt.strftime("%m/%d/%Y, %H:%M:%S %Z")
+
 st.header('Latest measurements', divider='red')
 
 for i in range(0, len(df)):
     st.subheader(df.iloc[i]['stationname'], divider='gray')
-    st.text(df.iloc[i]['Time']+' UTC')
+    st.text(df.iloc[i]['Time'])
     cols = st.columns(3)
     for j,k in zip(range(2, len(df.columns)), range(0, len(df.columns)-2)):
         col = cols[k % len(cols)]
