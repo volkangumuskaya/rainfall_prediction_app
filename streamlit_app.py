@@ -13,7 +13,6 @@ st.set_page_config(
 # Declare some useful functions.
 
 @st.cache_data(ttl=1800)
-st.cache_resource.clear()
 def get_df(filename):
     print('Reading df')
     # Instead of a CSV on disk, you could read from an HTTP endpoint here too.
@@ -22,6 +21,7 @@ def get_df(filename):
     print ('df read with shape ',tmp_df.shape,' and type ',type(tmp_df))
     return tmp_df
 
+st.cache_resource.clear()
 filename='files/daily_prediction.csv'
 df = get_df(filename)
 
