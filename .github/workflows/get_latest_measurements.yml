@@ -19,8 +19,7 @@ jobs:
           pip install -r requirements.txt
     - name: Get data
       run: |
-          python get_latest_measurements.py
-          python streamlit_app.py 
+          python get_latest_measurements.py 
     - name: Commit and push CSV file
       run: |
           git config --global user.name 'github-actions'
