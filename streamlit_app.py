@@ -12,7 +12,6 @@ st.set_page_config(
 # -----------------------------------------------------------------------------
 # Declare some useful functions.
 st.cache_data.clear()
-# @st.cache_data(ttl=600)
 def get_df(filename):
     print('Reading df')
     # Instead of a CSV on disk, you could read from an HTTP endpoint here too.
