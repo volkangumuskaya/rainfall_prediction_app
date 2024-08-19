@@ -1,5 +1,5 @@
 name: Get latest measurements via knmi api
-run-name: ${{ github.actor }} is testing get latest measurmenets
+run-name: ${{ github.actor }} is testing get latest measurements.
 on: 
   schedule:
     - cron: '*/10 * * * *'
