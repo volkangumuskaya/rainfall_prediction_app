@@ -72,7 +72,9 @@ df = ds.to_dataframe()
 
 df=df[df['stationname'].str.contains(r'(?i)eindhoven|rotterdam|amsterdam|utrecht|bosch|maastricht')].copy()
 df=df.reset_index(level=[0,1])
-
+df.time=df.time.dt.tz_localize('UTC')
+df.time=df.time.dt.tz_convert("Europe/Amsterdam")
+df.time=df.time.dt.strftime("%m/%d/%Y, %H:%M:%S %Z")
 
 #data preparation
 selected_cols=['station','stationname','time','D1H','R1H','dsd','ff','pp','n','tn','tx']
