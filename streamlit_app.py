@@ -11,7 +11,7 @@ st.set_page_config(
 
 # -----------------------------------------------------------------------------
 # Declare some useful functions.
-
+st.cache_data.clear()
 @st.cache_data(ttl=1800)
 def get_df(filename):
     print('Reading df')
