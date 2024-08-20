@@ -1,5 +1,5 @@
-name: Make monthly plots
-run-name: ${{ github.actor }} is testing monthly dahsboards
+name: Create monthly dashboard data
+run-name: ${{ github.actor }} is testing monthly dahsboards data retrieval
 on: workflow_dispatch
 jobs:
   Explore-GitHub-Actions:
@@ -15,14 +15,14 @@ jobs:
       run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-    - name: Make monthly plots
-      run: python monthly_dashboards.py
+    - name: Get data
+      run: python create_monthly_dashboard_data.py
     - name: Commit and push images
       run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
           git add .
-          git commit -m 'Add monthly plots'
+          git commit -m 'Add csv'
           git push
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
