@@ -216,15 +216,15 @@ from_year, to_year = st.select_slider(
     value=(min_year, max_year),
 )
 
-stations = df['station_name'].sort_values().unique()
+# stations = df['station_name'].sort_values().unique()
 
-if not len(stations):
-    st.warning("Select at least one station")
+# if not len(stations):
+#     st.warning("Select at least one station")
 
-selected_station = st.selectbox(
-    'Which station would you like to view?',
-    stations,
-    ["Eindhoven"])
+# selected_station = st.selectbox(
+#     'Which station would you like to view?',
+#     stations,
+#     ["Eindhoven"])
 
 # #plot
 # def plot_monthly_rain_per_years(selected_stations,fromyear,toyear,df_f):
