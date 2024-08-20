@@ -165,7 +165,7 @@ st.plotly_chart(figure2,width=1400,)
 
 
 #plot
-def plot_max_min_temps(selected_stations,fromyear,toyear,df_f,selected_palet):
+def plot_max_min_temps(selected_stations,fromyear,toyear,df_f,selected_palet_max,selected_palet_min):
     cols=['station','station_name','year','month','month_name','monthly_rain_mm','monthly_max_temp','monthly_min_temp']
     tmp=df_f[(df_f.station_name==selected_stations)&(df_f.year>=fromyear)&(df_f.year<=toyear)].drop_duplicates(subset=['year','month'])[cols]
     tmp_min=tmp.groupby(['month','month_name','station'])[['monthly_max_temp']].mean().reset_index()
@@ -180,7 +180,7 @@ def plot_max_min_temps(selected_stations,fromyear,toyear,df_f,selected_palet):
         fig.add_trace(
             go.Scatter(x=sel_tmp.month_name, y=sel_tmp.monthly_max_temp,
                        line=dict(width=1.7),
-                       marker_size=6, marker_color=selected_palet[color_index],
+                       marker_size=6, marker_color=selected_palet_max[color_index],
                    mode='lines+markers',
                    name=str(yr)),
             secondary_y=False
@@ -189,7 +189,7 @@ def plot_max_min_temps(selected_stations,fromyear,toyear,df_f,selected_palet):
         fig.add_trace(
             go.Scatter(x=sel_tmp.month_name, y=sel_tmp.monthly_min_temp,
                        line=dict(width=1.7),
-                       marker_size=6, marker_color=selected_palet[color_index],
+                       marker_size=6, marker_color=selected_palet_min[color_index],
                        mode='lines+markers',
                        name=str(yr),showlegend=False),
             secondary_y=True
@@ -226,11 +226,13 @@ def plot_max_min_temps(selected_stations,fromyear,toyear,df_f,selected_palet):
 from plotly.express.colors import sample_colorscale
 from sklearn.preprocessing import minmax_scale
 colors_ = np.linspace(1, 10, 100)
-discrete_colors = sample_colorscale('Reds', minmax_scale(colors_))
+discrete_colors_mx = sample_colorscale('Reds', minmax_scale(colors_))
+discrete_colors_mn = sample_colorscale('Blues', minmax_scale(colors_))
 figure=plot_max_min_temps(selected_stations=selected_station,
                           fromyear=from_year,toyear=to_year,
                           df_f=df,
-                          selected_palet=discrete_colors)
+                          selected_palet_max=discrete_colors_mx,selected_palet_min=discrete_colors_mn
+                         )
 st.plotly_chart(figure)
 
 #Predictions part
@@ -308,7 +310,7 @@ fig = make_subplots(specs=[[{"secondary_y": True}]])
 fig.add_trace(
     go.Bar(x=df.date, y=df.error,
            # text=round(metrics.R2, 2),
-           marker_color='dodgerblue', opacity=0.9,
+           marker_color='dodgerblue', opacity=0.7,
            name="Error"),
     secondary_y=False
 )
