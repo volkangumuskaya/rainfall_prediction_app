@@ -268,23 +268,21 @@ filtered_df = df[
     & (from_year <= df['date'])
 ]
 
-st.header('Rainfall predictions', divider='gray')
+st.header('Rainfall amounts', divider='gray')
 
 ''
 filtered_df['date']=filtered_df['date'].astype('str')
 st.line_chart(
     filtered_df,
     x='date',
-    y='rain_amount_mm_prediction',
+    y='next_day_rain_mm',
     color='station_name',
 )
 
 ''
 
-
-
 selected_stat = st.selectbox(
-    'Which station to be inspected in detail?',
+    'Which station to be inspected in detail vis-a-vis predictions?',
     stations
 )
 
