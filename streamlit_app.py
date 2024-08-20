@@ -210,21 +210,23 @@ min_year = df['year'].min()
 max_year = df['year'].max()
 print("min",min_value,'max',max_value)
 
+stations = df['station_name'].sort_values().unique()
+
+if not len(stations):
+    st.warning("Select at least one station")
+
+selected_station = st.selectbox(
+    'Which station would you like to view?',
+    stations,
+    ["Eindhoven"])
+
 from_year, to_year = st.select_slider(
     "Select a range of years for monthly plots",
     options=df.date.sort_values().unique(),
     value=(min_year, max_year),
 )
 
-# stations = df['station_name'].sort_values().unique()
 
-# if not len(stations):
-#     st.warning("Select at least one station")
-
-# selected_station = st.selectbox(
-#     'Which station would you like to view?',
-#     stations,
-#     ["Eindhoven"])
 
 # #plot
 # def plot_monthly_rain_per_years(selected_stations,fromyear,toyear,df_f):
