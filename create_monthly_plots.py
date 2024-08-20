@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
 
-df=pd.read_csv('files/monthly_dashbaordsdata.csv')
+df=pd.read_csv('files/monthly_dashboard_df.csv')
 
 #plot
 def plot_monthly_rain_per_years(selected_stations,fromyear,toyear,df_f):
