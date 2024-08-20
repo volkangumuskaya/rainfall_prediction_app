@@ -1,6 +1,8 @@
 name: Create monthly dashboard data
 run-name: ${{ github.actor }} is testing monthly dahsboards data retrieval
-on: workflow_dispatch
+on: 
+  schedule:
+    - cron: '00 5 1,7,14,21 * *'
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
