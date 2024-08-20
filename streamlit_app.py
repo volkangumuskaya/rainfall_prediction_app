@@ -223,10 +223,10 @@ def plot_max_min_temps(selected_stations,fromyear,toyear,df_f,selected_palet_max
     fig.update_layout(
         title="Max and min temp per month in the years "+str(fromyear)+'-'+str(toyear)+" in "+ selected_stations,
         xaxis_title="Month",
-        yaxis_title="Celcius degrees",
+        yaxis_title="Celcius degree",
         legend_title="Years",
     )
-    fig.update_yaxes(title_text="Celcius degrees", secondary_y=True)
+    fig.update_yaxes(title_text="Celcius degree", secondary_y=True)
     fig.update_yaxes(range=[-20, 50], secondary_y=True)
     fig.update_yaxes(range=[-20, 50], secondary_y=False)
     return fig
