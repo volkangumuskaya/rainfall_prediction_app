@@ -245,6 +245,8 @@ figure=plot_max_min_temps(selected_stations=selected_station_t,
 st.plotly_chart(figure)
 
 #Predictions part
+st.header('Rainfall amounts', divider='gray')
+
 filename='files/daily_prediction.csv'
 df = get_df(filename)
 
@@ -279,7 +281,6 @@ filtered_df = df[
     & (from_year <= df['date'])
 ]
 
-st.header('Rainfall amounts', divider='gray')
 
 ''
 filtered_df['date']=filtered_df['date'].astype('str')
