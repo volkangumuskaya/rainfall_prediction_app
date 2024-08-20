@@ -290,6 +290,7 @@ st.line_chart(
     x='date',
     y='next_day_rain_mm',
     color='station_name',
+    y_label='Rainfall amount'
 )
 
 ''
