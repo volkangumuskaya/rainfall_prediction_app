@@ -218,8 +218,7 @@ if not len(stations):
 
 selected_station = st.selectbox(
     'Which station would you like to view?',
-    stations,
-    ["Eindhoven"])
+    stations)
 
 from_year, to_year = st.select_slider(
     "Select a range of years for monthly plots",
