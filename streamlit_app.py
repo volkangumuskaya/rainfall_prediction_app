@@ -285,13 +285,6 @@ filtered_df = df[
 
 ''
 filtered_df['date']=filtered_df['date'].astype('str')
-st.line_chart(
-    filtered_df,
-    x='date',
-    y='next_day_rain_mm',
-    color='station_name',
-    y_label='Rainfall amount'
-)
 
 ''
 st.bar_chart(
