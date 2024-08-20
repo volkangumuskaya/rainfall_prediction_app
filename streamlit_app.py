@@ -37,7 +37,7 @@ with st.sidebar:
     st.image('images/profile_round.png',width=170,caption="https://www.linkedin.com/in/volkangumuskaya/")
     
 '''
-# Daily rain predictions for the cities in Netherlands
+# Daily and monthly meteorological outlook for the cities in Netherlands
 
 This is an example project to demonstrate MLOps, data visualisation and DS capabilities. The prediction algorithm is a simple model in the sole purpose of demonstration purposes. 
 As such, it is not a full-blown weather model that aims to provide industry standard predictions. 
