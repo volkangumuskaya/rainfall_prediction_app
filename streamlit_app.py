@@ -245,8 +245,9 @@ figure=plot_max_min_temps(selected_stations=selected_station_t,
 st.plotly_chart(figure)
 
 #Predictions part
+''
 st.header('Rainfall amounts', divider='gray')
-
+''
 filename='files/daily_prediction.csv'
 df = get_df(filename)
 
@@ -261,7 +262,7 @@ from_year, to_year = st.select_slider(
     options=df.date.sort_values().unique(),
     value=(min_value, max_value),
 )
-
+''
 stations = df['station_name'].sort_values().unique()
 
 if not len(stations):
