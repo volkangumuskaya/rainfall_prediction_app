@@ -1,4 +1,4 @@
-name: Make plots for daily predictions
+name: Make monthly plots
 run-name: ${{ github.actor }} is testing monthly dahsboards
 on: workflow_dispatch
 jobs:
@@ -16,7 +16,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
     - name: Make monthly plots
-      run: python mpnthly_dashboards.py
+      run: python monthly_dashboards.py
     - name: Commit and push images
       run: |
           git config --global user.name 'github-actions'
