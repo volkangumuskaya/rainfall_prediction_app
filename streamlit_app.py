@@ -96,7 +96,7 @@ for i in range(0, len(df)):
 #####################
 ## Monthly dashboards
 #####################
-st.header('Monthly plots', divider='gray')
+st.header('Monthly rainfall and temperature plots', divider='gray')
 del(df)
 filename='files/monthly_dashboard_df.csv'
 df = get_df(filename)
@@ -105,9 +105,6 @@ max_year = df['year'].max()
 print("min",min_year,'max',max_year)
 
 stations = df['station_name'].sort_values().unique()
-
-if not len(stations):
-    st.warning("Select at least one station")
 
 selected_station = st.selectbox(
     'Which station would you like to view?',
@@ -163,6 +160,15 @@ def plot_monthly_rain_per_years(selected_stations,fromyear,toyear,df_f):
 figure2=plot_monthly_rain_per_years(selected_station,from_year,to_year,df)
 st.plotly_chart(figure2,width=1400,)
 
+selected_station = st.selectbox(
+    'Which station would you like to view?',
+    stations)
+
+from_year, to_year = st.select_slider(
+    "Select a range of years for monthly plots",
+    options=df.year.sort_values().unique(),
+    value=(min_year, max_year),
+)
 
 #plot
 def plot_max_min_temps(selected_stations,fromyear,toyear,df_f,selected_palet_max,selected_palet_min):
