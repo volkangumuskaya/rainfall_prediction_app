@@ -148,7 +148,7 @@ def plot_monthly_rain_per_years(selected_stations,fromyear,toyear,df_f):
 
     fig.update_xaxes(type="category",categoryorder='array', categoryarray= x_categories)
     fig.update_layout(
-        title="Total rain per month in the years "+str(fromyear)+'-'+str(toyear)+"in "+ selected_stations,
+        title="Total rain per month in the years "+str(fromyear)+'-'+str(toyear)+" in "+ selected_stations,
         xaxis_title="Month",
         yaxis_title="Monthly total rain (mm)",
         legend_title="Years",
@@ -221,7 +221,7 @@ def plot_max_min_temps(selected_stations,fromyear,toyear,df_f,selected_palet_max
 
     fig.update_xaxes(type="category",categoryorder='array', categoryarray= x_categories)
     fig.update_layout(
-        title="Max and min temp per month in the years "+str(fromyear)+'-'+str(toyear)+"in "+ selected_stations,
+        title="Max and min temp per month in the years "+str(fromyear)+'-'+str(toyear)+" in "+ selected_stations,
         xaxis_title="Month",
         yaxis_title="Celcius degrees",
         legend_title="Years",
