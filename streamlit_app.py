@@ -302,7 +302,7 @@ st.bar_chart(
     y_label='Rainfall amount',
     stack=False
 )
-``
+''
 
 selected_stat = st.selectbox(
     'Which station to be inspected in detail vis-a-vis predictions?',
