@@ -294,6 +294,15 @@ st.line_chart(
 )
 
 ''
+st.bar_chart(
+    filtered_df,
+    x='date',
+    y='next_day_rain_mm',
+    color='station_name',
+    y_label='Rainfall amount',
+    stack=False
+)
+``
 
 selected_stat = st.selectbox(
     'Which station to be inspected in detail vis-a-vis predictions?',
