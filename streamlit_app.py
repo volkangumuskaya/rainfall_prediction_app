@@ -96,7 +96,8 @@ for i in range(0, len(df)):
 #####################
 ## Monthly dashboards
 #####################
-st.header('Monthly rainfall and temperature plots', divider='gray')
+st.header('Monthly plots', divider='gray')
+st.subheader('Rainfall plots', divider='gray')
 del(df)
 filename='files/monthly_dashboard_df.csv'
 df = get_df(filename)
@@ -160,12 +161,13 @@ def plot_monthly_rain_per_years(selected_stations,fromyear,toyear,df_f):
 figure2=plot_monthly_rain_per_years(selected_station,from_year,to_year,df)
 st.plotly_chart(figure2,width=1400,)
 
-selected_station = st.selectbox(
-    'Which station would you like to view?',
+st.subheader('Max - min temperature plots', divider='gray')
+selected_station_t = st.selectbox(
+    'Which station would you like to view for temperature plots?',
     stations)
 
-from_year, to_year = st.select_slider(
-    "Select a range of years for monthly plots",
+from_year_t, to_year_t = st.select_slider(
+    "Select a range of years for monthly temp plots",
     options=df.year.sort_values().unique(),
     value=(min_year, max_year),
 )
@@ -234,8 +236,9 @@ from sklearn.preprocessing import minmax_scale
 colors_ = np.linspace(1, 10, 100)
 discrete_colors_mx = sample_colorscale('Reds', minmax_scale(colors_))
 discrete_colors_mn = sample_colorscale('Blues', minmax_scale(colors_))
-figure=plot_max_min_temps(selected_stations=selected_station,
-                          fromyear=from_year,toyear=to_year,
+
+figure=plot_max_min_temps(selected_stations=selected_station_t,
+                          fromyear=from_year_t,toyear=to_year_t,
                           df_f=df,
                           selected_palet_max=discrete_colors_mx,selected_palet_min=discrete_colors_mn
                          )
