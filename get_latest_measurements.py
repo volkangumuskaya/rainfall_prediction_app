@@ -44,8 +44,13 @@ def download_file_from_temporary_download_url(download_url, filename):
     logger.info(f"Successfully downloaded dataset file to {filename}")
 
 
+# public anonymious key by KNMI
+# eyJvcmciOiI1ZTU1NGUxOTI3NGE5NjAwMDEyYTNlYjEiLCJpZCI6ImE1OGI5NGZmMDY5NDRhZDNhZjFkMDBmNDBmNTQyNjBkIiwiaCI6Im11cm11cjEyOCJ9
 
-api_key = "eyJvcmciOiI1ZTU1NGUxOTI3NGE5NjAwMDEyYTNlYjEiLCJpZCI6ImE1OGI5NGZmMDY5NDRhZDNhZjFkMDBmNDBmNTQyNjBkIiwiaCI6Im11cm11cjEyOCJ9"
+# private
+# eyJvcmciOiI1ZTU1NGUxOTI3NGE5NjAwMDEyYTNlYjEiLCJpZCI6ImEyNzc2ZDg0YTg5YzRiMTU5NDY5YmRhM2JmOTE4YjMyIiwiaCI6Im11cm11cjEyOCJ9
+api_key = "eyJvcmciOiI1ZTU1NGUxOTI3NGE5NjAwMDEyYTNlYjEiLCJpZCI6ImEyNzc2ZDg0YTg5YzRiMTU5NDY5YmRhM2JmOTE4YjMyIiwiaCI6Im11cm11cjEyOCJ9"
+
 dataset_name = "Actuele10mindataKNMIstations"
 dataset_version = "2"
 logger.info(f"Fetching latest file of {dataset_name} version {dataset_version}")
