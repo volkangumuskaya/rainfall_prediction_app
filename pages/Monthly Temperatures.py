@@ -8,6 +8,13 @@ import matplotlib.pyplot as plt
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
+# Set the title and favicon that appear in the Browser's tab bar.
+st.set_page_config(
+    page_title='volkan-ai',
+    layout="wide",
+    page_icon=':volcano:', # This is an emoji shortcode. Could be a URL too.
+)
+
 #####################
 ## Monthly dashboards
 #####################
