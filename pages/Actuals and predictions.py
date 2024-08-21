@@ -22,7 +22,7 @@ st.set_page_config(
 st.header('Rainfall amounts', divider='gray')
 ''
 filename='files/daily_prediction.csv'
-df = get_df(filename)
+df = pd.read_csv(filename)
 
 df=df.fillna(0)
 df = df.replace('',0)
