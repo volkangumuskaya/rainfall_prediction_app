@@ -18,6 +18,7 @@ st.set_page_config(
 #####################
 ## Monthly dashboards
 #####################
+st.header('Monthly plots', divider='gray')
 st.subheader('Monthly max-min temperatures', divider='gray')
 filename='files/monthly_dashboard_df.csv'
 df = pd.read_csv(filename)
@@ -27,15 +28,16 @@ print("min",min_year,'max',max_year)
 
 stations = df['station_name'].sort_values().unique()
 
-selected_station = st.selectbox(
-    'Which station would you like to view?',
+selected_station_t = st.selectbox(
+    'Which station would you like to view for temperature plots?',
     stations)
 
-from_year, to_year = st.select_slider(
-    "Select a range of years for monthly plots",
+from_year_t, to_year_t = st.select_slider(
+    "Select a range of years for monthly temp plots",
     options=df[df.year>=min_year].year.sort_values().unique(),
     value=(min_year, max_year),
 )
+
 
 #plot
 def plot_max_min_temps(selected_stations,fromyear,toyear,df_f,selected_palet_max,selected_palet_min):
