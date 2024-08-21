@@ -3,6 +3,8 @@ run-name: ${{ github.actor }} is testing get latest measurements.
 on: 
   schedule:
     - cron: '*/30 * * * *'
+env:
+  knmi_api_key: ${{ secrets.KNMI_API_KEY }}
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
