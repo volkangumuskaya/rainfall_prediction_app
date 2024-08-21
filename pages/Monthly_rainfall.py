@@ -15,7 +15,7 @@ st.header('Monthly plots', divider='gray')
 st.subheader('Rainfall plots', divider='gray')
 del(df)
 filename='files/monthly_dashboard_df.csv'
-df = get_df(filename)
+df = pd.read_csv(filename)
 min_year = df['year'].min()+1
 max_year = df['year'].max()
 print("min",min_year,'max',max_year)
