@@ -13,7 +13,6 @@ import plotly.graph_objects as go
 #####################
 st.header('Monthly plots', divider='gray')
 st.subheader('Rainfall plots', divider='gray')
-del(df)
 filename='files/monthly_dashboard_df.csv'
 df = pd.read_csv(filename)
 min_year = df['year'].min()+1
