@@ -113,7 +113,7 @@ selected_station = st.selectbox(
 
 from_year, to_year = st.select_slider(
     "Select a range of years for monthly plots",
-    options=df.year.sort_values().unique(),
+    options=df[df.year>=min_year].year.sort_values().unique(),
     value=(min_year, max_year),
 )
 
@@ -168,7 +168,7 @@ selected_station_t = st.selectbox(
 
 from_year_t, to_year_t = st.select_slider(
     "Select a range of years for monthly temp plots",
-    options=df.year.sort_values().unique(),
+    options=df[df.year>=min_year].year.sort_values().unique(),
     value=(min_year, max_year),
 )
 
