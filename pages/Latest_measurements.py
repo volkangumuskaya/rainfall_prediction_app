@@ -52,7 +52,7 @@ The data is provided via the [KNMI API](https://daggegevens.knmi.nl/klimatologie
 
 ###Reading latest measurements
 filename='files/latest_measurements.csv'
-df = get_df(filename)
+df = pd.read_csv(filename)
 
 
 cols=['stationname',
