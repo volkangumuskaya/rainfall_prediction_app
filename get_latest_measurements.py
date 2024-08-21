@@ -8,7 +8,7 @@ import requests
 logging.basicConfig()
 logger = logging.getLogger(__name__)
 logger.setLevel(os.environ.get("LOG_LEVEL", logging.INFO))
-
+KNMI_API_KEY=os.environ['knmi_api_key']
 
 class OpenDataAPI:
     def __init__(self, api_token: str):
@@ -49,7 +49,9 @@ def download_file_from_temporary_download_url(download_url, filename):
 
 # private
 # eyJvcmciOiI1ZTU1NGUxOTI3NGE5NjAwMDEyYTNlYjEiLCJpZCI6ImEyNzc2ZDg0YTg5YzRiMTU5NDY5YmRhM2JmOTE4YjMyIiwiaCI6Im11cm11cjEyOCJ9
-api_key = "eyJvcmciOiI1ZTU1NGUxOTI3NGE5NjAwMDEyYTNlYjEiLCJpZCI6ImEyNzc2ZDg0YTg5YzRiMTU5NDY5YmRhM2JmOTE4YjMyIiwiaCI6Im11cm11cjEyOCJ9"
+# api_key = "eyJvcmciOiI1ZTU1NGUxOTI3NGE5NjAwMDEyYTNlYjEiLCJpZCI6ImEyNzc2ZDg0YTg5YzRiMTU5NDY5YmRhM2JmOTE4YjMyIiwiaCI6Im11cm11cjEyOCJ9"
+
+api_key=KNMI_API_KEY
 
 dataset_name = "Actuele10mindataKNMIstations"
 dataset_version = "2"
