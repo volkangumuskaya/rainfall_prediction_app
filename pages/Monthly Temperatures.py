@@ -11,13 +11,21 @@ import plotly.graph_objects as go
 #####################
 ## Monthly dashboards
 #####################
-st.subheader('Max - min temperature plots', divider='gray')
-selected_station_t = st.selectbox(
-    'Which station would you like to view for temperature plots?',
+st.subheader('Monthly max-min temperatures', divider='gray')
+filename='files/monthly_dashboard_df.csv'
+df = pd.read_csv(filename)
+min_year = df['year'].min()+1
+max_year = df['year'].max()
+print("min",min_year,'max',max_year)
+
+stations = df['station_name'].sort_values().unique()
+
+selected_station = st.selectbox(
+    'Which station would you like to view?',
     stations)
 
-from_year_t, to_year_t = st.select_slider(
-    "Select a range of years for monthly temp plots",
+from_year, to_year = st.select_slider(
+    "Select a range of years for monthly plots",
     options=df[df.year>=min_year].year.sort_values().unique(),
     value=(min_year, max_year),
 )
