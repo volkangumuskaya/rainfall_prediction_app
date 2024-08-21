@@ -9,7 +9,7 @@ data = {
     'start': os.environ['TRAIN_START_DATE'],
     'end': os.environ['TRAIN_END_DATE'],
     'vars': 'ALL',
-    'stns': '370',
+    'stns': '240:344:370:380:269',
 }
 
 URL = "https://daggegevens.knmi.nl/klimatologie/daggegevens"
