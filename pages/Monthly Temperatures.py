@@ -97,17 +97,14 @@ def plot_max_min_temps(selected_stations,fromyear,toyear,df_f,selected_palet_max
     fig.update_yaxes(range=[-20, 50], secondary_y=True)
     fig.update_yaxes(range=[-20, 50], secondary_y=False)
     return fig
-st.header('1')
 from plotly.express.colors import sample_colorscale
 from sklearn.preprocessing import minmax_scale
 colors_ = np.linspace(1, 10, 100)
 discrete_colors_mx = sample_colorscale('Reds', minmax_scale(colors_))
 discrete_colors_mn = sample_colorscale('Blues', minmax_scale(colors_))
-st.header('2')
 figure=plot_max_min_temps(selected_stations=selected_station_t,
                           fromyear=from_year_t,toyear=to_year_t,
                           df_f=df,
                           selected_palet_max=discrete_colors_mx,selected_palet_min=discrete_colors_mn
                          )
-st.header('3')
 st.plotly_chart(figure)
