@@ -158,6 +158,7 @@ df=pd.concat([df,df_test],axis=1)
 # df=df.sort_values('date',ascending=False).drop_duplicates(subset=['station'])
 path='files/daily_prediction.csv'
 print('saving to path:',path)
+df['rain_prediction_hybrid']=df['rain_amount_mm_prediction']*df['rain_occurrence_prediction']
 df['pred_run_on']=str(datetime.datetime.now())
 df['used_model']=model_id
 print(df)
