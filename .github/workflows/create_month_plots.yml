@@ -1,6 +1,8 @@
 name: Create monthly plots
 run-name: ${{ github.actor }} is testing monthly dahsboards data retrieval
-on: workflow_dispatch
+on: 
+  schedule:
+      - cron: '00 8 1 * *'
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
