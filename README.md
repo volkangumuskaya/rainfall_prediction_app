@@ -14,7 +14,7 @@ The visualisations can be found in the streamlit app: https://rainfall-predictio
 The working mechanism is as follows:
 
 ## Github Workflow Actions (YML files in `.github/workflows`)
-As the name suggests these files invoke scheduled actions for retrieving historical and daily data, training ML model and sourcing the front end (i.e. streamlit app). The actions invoke  python scripts on schedule:
+As the name suggests these files invoke scheduled actions for retrieving historical and daily data, training ML model and feeding the data to source the front end (i.e. streamlit app). The actions invoke  python scripts on schedule:
 
 ### 1. Retrieve data from KNMI 
 **`set_dates_for_training.py`**
@@ -68,6 +68,7 @@ Here, static images are plotted and saved in `images` folder.
 
 ### 2. Train the prediction models and make predictions 
 (`train_rainfall_model.yml`,`predict_daily_rainfall.yml`)
+
 **`train_rainfall_model.py`**
 
 Here, we train two `LGBM` models, one regression and one classification using 80/20 Training/Testing data split. The split is made taking the chronological order into account (i.e. first 8 years is training, last 2 years is testing data). Regression model predicts the rainfall amount in mm. Classification predcits whether or now it will rain, i.e. rainfall>=0.1 mm. The two models are exclusive. 
@@ -86,7 +87,7 @@ Here, obviously we are not trying to have a full blown weather model. The whole 
 
 **`predict_daily_rainfall.py`**
 
-Using the saved models as `pickle` files, we get daily data similar to `get_daily_rain_data_from_knmi.py` and make predictions. Here, we use the latest model trained in Step 3. We call this step "the inference part".
+Using the saved models as `pickle` files, we get daily data similar to `get_daily_rain_data_from_knmi.py` and make predictions. Here, we use the latest model trained before. We call this step "the inference part".
 
 - **Input**: LGBM models - classification and regression (`files/rainfall_models.pickle`)
 - **Output**: Daily predictions file (`files/daily_prediction.csv`). Each row will be a prediction made at each day. For that reason, the file is written in `append` mode.
@@ -102,10 +103,22 @@ Here we plot actuals, predictions and errors of the ML model.
 
 <img src="images/preds_actuals_confusion_matrix.png" width="425"/> 
 
-### 3. Front end with Streamlit
+## Front end with Streamlit
 **`streamlit_app.py`**
-The [front end] (https://rainfall-prediction-app-volkan-ai.streamlit.app/) is created via the aforementioned python script. Here there are three groups of visualisations:
+The [front end](https://rainfall-prediction-app-volkan-ai.streamlit.app/) is created via the aforementioned python script. Here there are three groups of visualisations that are interactive. The user can choose the stations of interest and the date range to modify data visualisations:
 
 - *Latest measurements*: The readings from stations taken every half hour via KNMI API, such as rainfall amount, temperature, wind speed etc
+
+Example:
+![image](https://github.com/user-attachments/assets/040bfedd-47e5-4878-99bc-b956f3fb26f9)
+
 - *Monthly plots*: The rainfall and temperature is plotted per month for the last 10 year to provide the monhtly figures and evolution through the years. User is expected to choose a location.
+
+Example:
+![image](https://github.com/user-attachments/assets/43dbe3ff-ee90-4ff7-adf1-c607a6d2c523)
+
 - *Predictions vs Actuals*: The actual rainfall amounts, the predictions and the error is plotted for the last couple of weeks. User is expected to choose a specific location. 
+
+Example:
+![image](https://github.com/user-attachments/assets/e299d229-61df-453e-b87b-6f952d1cd6d8)
+
