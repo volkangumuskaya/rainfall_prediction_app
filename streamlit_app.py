@@ -14,6 +14,7 @@ st.set_page_config(
     layout="wide",
     page_icon=':rainbow:', # This is an emoji shortcode. Could be a URL too.
 )
+st.logo('images/el-chalten.jpg')
 # st.set_page_icon("images/weather_icon.png")
 # -----------------------------------------------------------------------------
 # Declare some useful functions.
