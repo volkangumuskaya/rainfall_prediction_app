@@ -16,6 +16,7 @@ st.set_page_config(
     # page_icon="images/weather_icon.png"
 )
 
+import base64
 def img_to_base64(image_path):
     """Convert image to base64."""
     try:
