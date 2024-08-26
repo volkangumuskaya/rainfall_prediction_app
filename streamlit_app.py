@@ -58,7 +58,7 @@ st.image('images/el-chalten.jpg','El Chalten, Patagonia')
 
 st.sidebar.header("About",divider=True)
 with st.sidebar:
-    st.image('images/profile_round.png',width=100,caption="https://www.linkedin.com/in/volkangumuskaya/")
+    st.image('images/profile_round.png',width=200,caption="https://www.linkedin.com/in/volkangumuskaya/")
     
 '''
 # Daily and monthly meteorological outlook for the cities in Netherlands
