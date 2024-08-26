@@ -56,7 +56,7 @@ def get_df(filename):
 st.image('images/el-chalten.jpg','El Chalten, Patagonia')
 
 
-st.sidebar.header("About",divider=True)
+st.sidebar.header("About",divider='orange')
 with st.sidebar:
     st.image('images/profile_round.png',width=200,caption="https://www.linkedin.com/in/volkangumuskaya/")
     
