@@ -185,7 +185,7 @@ def plot_monthly_rain_per_years(selected_stations,fromyear,toyear,df_f):
 figure2=plot_monthly_rain_per_years(selected_station,from_year,to_year,df)
 st.plotly_chart(figure2,width=1400,)
 
-st.subheader('Max - min temperature plots', , divider=True)
+st.subheader('Max - min temperature plots', divider=True)
 selected_station_t = st.selectbox(
     'Which station would you like to view for temperature plots?',
     stations)
@@ -270,7 +270,7 @@ st.plotly_chart(figure)
 
 #Predictions part
 ''
-st.header('Rainfall amounts', , divider=True)
+st.header('Rainfall amounts', divider=True)
 ''
 filename='files/daily_prediction.csv'
 df = get_df(filename)
