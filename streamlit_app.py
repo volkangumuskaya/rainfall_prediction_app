@@ -14,7 +14,7 @@ st.set_page_config(
     layout="wide",
     # page_icon='https://www.iconfinder.com/icons/2998142/cloud_forecast_rainbow_weather_icon', # This is an emoji shortcode. Could be a URL too.
 )
-st.set_page_icon("images/monthly_rain.png")
+st.set_page_icon("images/weather_icon.png")
 # -----------------------------------------------------------------------------
 # Declare some useful functions.
 st.cache_data.clear()
