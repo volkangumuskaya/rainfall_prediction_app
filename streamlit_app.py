@@ -80,7 +80,7 @@ col_names_dict = {
 
 df=df.rename(columns=col_names_dict)
 
-st.header('Latest measurements', divider='red')
+st.header('Latest measurements', divider=True)
 
 for i in range(0, len(df)):
     st.subheader(df.iloc[i]['stationname'], divider='gray')
@@ -95,12 +95,13 @@ for i in range(0, len(df)):
             )
 
 ###
-stations = df['station_name'].sort_values().unique()
+st.header('Latest measurements', divider=True)
+
+stations = df['stationname'].sort_values().unique()
 selected_station = st.selectbox(
     'Select station for latest measurements',
     stations)
 
-st.header('Latest measurements', divider=True)
 
 for i in range(0, len(df)):
     if(df.iloc[i]['stationname']==selected_station):
