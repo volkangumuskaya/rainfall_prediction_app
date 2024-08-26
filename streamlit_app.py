@@ -120,7 +120,7 @@ for i in range(0, len(df)):
 #####################
 ## Monthly dashboards
 #####################
-st.header('Monthly plots', , divider=True)
+st.header('Monthly plots', divider=True)
 st.subheader('Rainfall plots', divider=True)
 del(df)
 filename='files/monthly_dashboard_df.csv'
