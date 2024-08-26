@@ -26,7 +26,7 @@ def img_to_base64(image_path):
         logging.error(f"Error converting image to base64: {str(e)}")
         return None
 # Load and display sidebar image
-img_path = "images/weather_icon.png"
+img_path = "images/logo3_transparent.png"
 img_base64 = img_to_base64(img_path)
 if img_base64:
     st.sidebar.markdown(
