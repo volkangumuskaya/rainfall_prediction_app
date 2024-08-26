@@ -12,7 +12,7 @@ import plotly.graph_objects as go
 st.set_page_config(
     page_title='volkan-ai',
     layout="wide",
-    page_icon=':volcano:', # This is an emoji shortcode. Could be a URL too.
+    page_icon='images/weather_icon.png', # This is an emoji shortcode. Could be a URL too.
 )
 
 # -----------------------------------------------------------------------------
