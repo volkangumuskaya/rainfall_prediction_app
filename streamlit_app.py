@@ -93,6 +93,28 @@ for i in range(0, len(df)):
                 label=df.columns[j],
                 value=df.iloc[i][j]
             )
+
+###
+stations = df['station_name'].sort_values().unique()
+selected_station = st.selectbox(
+    'Select station for latest measurements',
+    stations)
+
+st.header('Latest measurements', divider=True)
+
+for i in range(0, len(df)):
+    if(df.iloc[i]['stationname']==selected_station):
+        st.subheader(df.iloc[i]['stationname'], divider=True)
+        st.text(df.iloc[i]['Time'])
+        cols = st.columns(3)
+        for j,k in zip(range(2, len(df.columns)), range(0, len(df.columns)-2)):
+            col = cols[k % len(cols)]
+            with col:
+                st.metric(
+                    label=df.columns[j],
+                    value=df.iloc[i][j]
+                )
+
 #####################
 ## Monthly dashboards
 #####################
