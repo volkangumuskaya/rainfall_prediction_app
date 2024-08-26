@@ -45,8 +45,8 @@ jobs:
       run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          git add files/latest_measurements.csv
-          git add streamlit_app.py
+          git add -f files/latest_measurements.csv
+          # git add streamlit_app.py
           git commit -m 'Add files/latest_measurements.csv csv'
           git push
       env:
