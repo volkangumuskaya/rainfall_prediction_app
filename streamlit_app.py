@@ -82,19 +82,20 @@ df=df.rename(columns=col_names_dict)
 
 st.header('Latest measurements', divider=True)
 
-for i in range(0, len(df)):
-    st.subheader(df.iloc[i]['stationname'], divider='gray')
-    st.text(df.iloc[i]['Time'])
-    cols = st.columns(3)
-    for j,k in zip(range(2, len(df.columns)), range(0, len(df.columns)-2)):
-        col = cols[k % len(cols)]
-        with col:
-            st.metric(
-                label=df.columns[j],
-                value=df.iloc[i][j]
-            )
+# #Show all
+# for i in range(0, len(df)):
+#     st.subheader(df.iloc[i]['stationname'], divider='gray')
+#     st.text(df.iloc[i]['Time'])
+#     cols = st.columns(3)
+#     for j,k in zip(range(2, len(df.columns)), range(0, len(df.columns)-2)):
+#         col = cols[k % len(cols)]
+#         with col:
+#             st.metric(
+#                 label=df.columns[j],
+#                 value=df.iloc[i][j]
+#             )
 
-###
+#Show measurements only for selected station
 st.header('Latest measurements', divider=True)
 
 stations = df['stationname'].sort_values().unique()
@@ -119,8 +120,8 @@ for i in range(0, len(df)):
 #####################
 ## Monthly dashboards
 #####################
-st.header('Monthly plots', divider='gray')
-st.subheader('Rainfall plots', divider='gray')
+st.header('Monthly plots', , divider=True)
+st.subheader('Rainfall plots', divider=True)
 del(df)
 filename='files/monthly_dashboard_df.csv'
 df = get_df(filename)
@@ -184,7 +185,7 @@ def plot_monthly_rain_per_years(selected_stations,fromyear,toyear,df_f):
 figure2=plot_monthly_rain_per_years(selected_station,from_year,to_year,df)
 st.plotly_chart(figure2,width=1400,)
 
-st.subheader('Max - min temperature plots', divider='gray')
+st.subheader('Max - min temperature plots', , divider=True)
 selected_station_t = st.selectbox(
     'Which station would you like to view for temperature plots?',
     stations)
@@ -269,7 +270,7 @@ st.plotly_chart(figure)
 
 #Predictions part
 ''
-st.header('Rainfall amounts', divider='gray')
+st.header('Rainfall amounts', , divider=True)
 ''
 filename='files/daily_prediction.csv'
 df = get_df(filename)
