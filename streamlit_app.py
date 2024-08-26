@@ -13,9 +13,27 @@ st.set_page_config(
     page_title='volkan-ai',
     layout="wide",
     # page_icon=':rainbow:', # This is an emoji shortcode. Could be a URL too.
-    page_icon="images/weather_icon.png"
+    # page_icon="images/weather_icon.png"
 )
-st.logo('images/el-chalten.jpg')
+
+def img_to_base64(image_path):
+    """Convert image to base64."""
+    try:
+        with open(image_path, "rb") as img_file:
+            return base64.b64encode(img_file.read()).decode()
+    except Exception as e:
+        logging.error(f"Error converting image to base64: {str(e)}")
+        return None
+# Load and display sidebar image
+img_path = "images/weather_icon.png"
+img_base64 = img_to_base64(img_path)
+if img_base64:
+    st.sidebar.markdown(
+        f'<img src="data:images/png;base64,{img_base64}" class="cover-glow">',
+        unsafe_allow_html=True,
+    )
+
+# st.logo('images/el-chalten.jpg')
 # st.set_page_icon("images/weather_icon.png")
 # -----------------------------------------------------------------------------
 # Declare some useful functions.
