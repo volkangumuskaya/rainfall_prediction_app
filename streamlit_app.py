@@ -12,9 +12,9 @@ import plotly.graph_objects as go
 st.set_page_config(
     page_title='volkan-ai',
     layout="wide",
-    # page_icon='https://www.iconfinder.com/icons/2998142/cloud_forecast_rainbow_weather_icon', # This is an emoji shortcode. Could be a URL too.
+    # page_icon=':rainbow:', # This is an emoji shortcode. Could be a URL too.
 )
-st.set_page_icon("images/weather_icon.png")
+# st.set_page_icon("images/weather_icon.png")
 # -----------------------------------------------------------------------------
 # Declare some useful functions.
 st.cache_data.clear()
