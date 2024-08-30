@@ -10,7 +10,7 @@ import calendar
 
 #set date to 15 days ago
 end_date=int((datetime.date.today()-datetime.timedelta(days=1)).strftime('%Y%m%d'))
-start_date=int((datetime.date.today()-datetime.timedelta(days=15)).strftime('%Y%m%d'))
+start_date=int((datetime.date.today()-datetime.timedelta(days=35)).strftime('%Y%m%d'))
 
 data = {
     'start': start_date,
