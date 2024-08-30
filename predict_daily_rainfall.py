@@ -8,7 +8,7 @@ import numpy as np
 import datetime
 import calendar
 
-#set date to 15 days ago
+#set dates
 end_date=int((datetime.date.today()-datetime.timedelta(days=1)).strftime('%Y%m%d'))
 start_date=int((datetime.date.today()-datetime.timedelta(days=35)).strftime('%Y%m%d'))
 
