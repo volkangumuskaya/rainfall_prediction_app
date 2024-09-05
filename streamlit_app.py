@@ -119,7 +119,7 @@ df=df.rename(columns=col_names_dict)
 #             )
 
 #Show measurements only for selected station
-st.header('Latest measurements', divider=True)
+st.header('Latest measurements (Please refresh if error) ', divider=True)
 
 stations = df['stationname'].sort_values().unique()
 selected_station = st.selectbox(
