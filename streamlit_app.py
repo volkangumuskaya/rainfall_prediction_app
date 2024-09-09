@@ -61,7 +61,8 @@ with st.sidebar:
     st.image('images/profile_round.png',width=200,caption="https://www.linkedin.com/in/volkangumuskaya/")
     
 '''
-# Daily and monthly meteorological outlook for the cities in Netherlands
+# Daily and monthly meteorological outlook for the cities in Netherlands 
+## Please refresh if error
 
 This is an example project to demonstrate MLOps, data visualisation and DS capabilities. The prediction algorithm is a simple model in the sole purpose of demonstration purposes. 
 As such, it is not a full-blown weather model that aims to provide industry standard predictions. 
@@ -119,7 +120,7 @@ df=df.rename(columns=col_names_dict)
 #             )
 
 #Show measurements only for selected station
-st.header('Latest measurements - Please refresh if error', divider=True)
+st.header('Latest measurements', divider=True)
 
 stations = df['stationname'].sort_values().unique()
 selected_station = st.selectbox(
