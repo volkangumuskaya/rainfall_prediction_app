@@ -104,20 +104,6 @@ col_names_dict = {
 
 df=df.rename(columns=col_names_dict)
 
-# st.header('Latest measurements', divider=True)
-# #Show all
-# for i in range(0, len(df)):
-#     st.subheader(df.iloc[i]['stationname'], divider='gray')
-#     st.text(df.iloc[i]['Time'])
-#     cols = st.columns(3)
-#     for j,k in zip(range(2, len(df.columns)), range(0, len(df.columns)-2)):
-#         col = cols[k % len(cols)]
-#         with col:
-#             st.metric(
-#                 label=df.columns[j],
-#                 value=df.iloc[i][j]
-#             )
-
 #Show measurements only for selected station
 st.header('Latest measurements', divider=True)
 
