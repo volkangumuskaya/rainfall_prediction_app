@@ -1,4 +1,4 @@
 stationname,Time,Rainfall_Duration_last_hour_minutes,Amount_Rainfall_last_Hour_in_mm,Wind_Direction,Wind_Speed_kmh,Air_pressure_in_hPa,Total_cloud_cover_percentage,Temperature
-Rotterdam Airport,"12/07/2024, 20:00:00 CET",36.0,1.61,11.2,14.9,988.16,100.0,7.1
-Eindhoven Airport,"12/07/2024, 20:00:00 CET",56.8,0.39,10.1,24.12,991.19,100.0,6.5
-Maastricht Airport,"12/07/2024, 20:00:00 CET",55.6,0.79,9.7,33.7,993.35,100.0,6.3
+Rotterdam Airport,"12/07/2024, 20:20:00 CET",16.0,0.41,6.1,12.02,988.86,100.0,7.1
+Eindhoven Airport,"12/07/2024, 20:20:00 CET",56.8,0.35,10.0,24.7,991.19,100.0,6.4
+Maastricht Airport,"12/07/2024, 20:20:00 CET",55.6,0.69,8.7,32.58,993.35,100.0,6.2
