@@ -1,4 +1,1 @@
 stationname,Time,Rainfall_Duration_last_hour_minutes,Amount_Rainfall_last_Hour_in_mm,Wind_Direction,Wind_Speed_kmh,Air_pressure_in_hPa,Total_cloud_cover_percentage,Temperature
-Rotterdam Airport,"01/15/2025, 10:20:00 CET",-,0.0,25.8,3.02,1034.23,100.0,7.3
-Eindhoven Airport,"01/15/2025, 10:20:00 CET",-,0.0,22.2,3.71,1034.14,100.0,4.8
-Maastricht Airport,"01/15/2025, 10:20:00 CET",-,0.0,4.7,14.08,1034.49,100.0,1.6
