@@ -1,4 +1,4 @@
 stationname,Time,Rainfall_Duration_last_hour_minutes,Amount_Rainfall_last_Hour_in_mm,Wind_Direction,Wind_Speed_kmh,Air_pressure_in_hPa,Total_cloud_cover_percentage,Temperature
-Rotterdam Airport,"09/06/2025, 14:10:00 CEST",0.0,0.0,13.7,13.36,1022.25,100.0,21.3
-Eindhoven Airport,"09/06/2025, 14:10:00 CEST",0.0,0.0,30.3,12.02,1022.39,100.0,22.7
-Maastricht Airport,"09/06/2025, 14:10:00 CEST",0.0,0.0,32.3,9.65,1022.13,100.0,22.5
+Rotterdam Airport,"09/06/2025, 14:40:00 CEST",0.0,0.0,22.6,14.33,1021.85,100.0,21.7
+Eindhoven Airport,"09/06/2025, 14:40:00 CEST",0.0,0.0,17.8,11.41,1022.19,100.0,23.1
+Maastricht Airport,"09/06/2025, 14:40:00 CEST",0.0,0.0,48.6,8.21,1021.73,100.0,23.1
